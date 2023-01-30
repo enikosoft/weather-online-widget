@@ -86,6 +86,8 @@
     ],
     "type-literal-delimiter": false,
     "typedef": false,
+    "react-a11y-event-has-role": false,
+    "no-unused-variable": true,
     "typedef-whitespace": [
       true,
       {

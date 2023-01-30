@@ -1,25 +1,29 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import {Input} from 'components/controls/Input';
+import {ResetStyles} from 'styles/ResetStyles';
+import {ThemeProvider} from 'styled-components';
+import {useDarkMode} from 'hooks/useDarkMode';
+import {GlobalStyle} from 'styles/GlobalStyle';
+import {AppProvider} from 'providers/AppProvider';
+import {AppRoutes} from 'routes';
+import {FontsStyle} from 'styles/fonts';
 
-// import {Input} from './components/controls/Input';
+const App = () => {
+  const [theme, toggleTheme] = useDarkMode();
 
-function App() {
+  const switchTheme = () => {
+    toggleTheme();
+  };
+
   return (
-    <div className="App">
-      <Input />
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={{mode: theme}}>
+      <ResetStyles />
+      <FontsStyle />
+      <GlobalStyle />
+      <AppProvider>
+        <AppRoutes switchTheme={switchTheme} />
+      </AppProvider>
+    </ThemeProvider>
   );
-}
+};
 
 export default App;
