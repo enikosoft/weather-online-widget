@@ -1,14 +1,15 @@
 import Application from 'components/layout/Application';
+import {Dashboard} from 'pages';
 
-export const getRoutes = (switchThema) => {
+export const getRoutes = (switchThema, googleMapApiLoaded) => {
   return [
     {
-      path: '/dashboard',
-      element: <Application switchThema={switchThema} />,
+      path: '/app',
+      element: <Application switchThema={switchThema} googleMapApiLoaded={googleMapApiLoaded} />,
       children: [
-        // { path: '/profile', element: <Profile /> },
-        // { path: '/', element: <Dashboard /> },
-        // { path: '*', element: <div to="." /> },
+        {path: '', element: <Dashboard />},
+        {path: 'favorite', element: <div>favorite</div>},
+        {path: 'dashboard', element: <Dashboard />},
       ],
     },
   ];

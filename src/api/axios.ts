@@ -1,6 +1,6 @@
 import AxiosReq, {Axios} from 'axios';
 
-import {REACT_APP_GEOGRAPHY_SERVER_URL, WEATHER_API_URL} from 'config/api';
+import {WEATHER_API_URL} from 'config/api';
 
 class Request {
   private url: string;
@@ -29,7 +29,5 @@ class Request {
     return this.axios;
   }
 }
-
-export const geographyServer = new Request(REACT_APP_GEOGRAPHY_SERVER_URL).instance;
 
 export const weatherServer = new Request(WEATHER_API_URL).instance;

@@ -1,13 +1,7 @@
 import {useDarkMode} from 'hooks';
-import React from 'react';
-import styled from 'styled-components';
 import {ThemeContext} from 'styles';
+import {Icon} from './styles';
 import {IconBaseProps} from './type';
-
-const StyledMoonIcon = styled.div`
-  // styles for moon icon
-  display: flex;
-`;
 
 export const MoonIcon = (props: IconBaseProps) => {
   const [theme] = useDarkMode();
@@ -17,7 +11,7 @@ export const MoonIcon = (props: IconBaseProps) => {
   const defaultColor = color ? color : theme === ThemeContext.light ? 'green' : '#616161';
 
   return (
-    <StyledMoonIcon>
+    <Icon>
       <svg className="moon-icon" width={width} height={height} xmlns="http://www.w3.org/2000/svg">
         <g fill={defaultColor}>
           <path
@@ -27,6 +21,6 @@ export const MoonIcon = (props: IconBaseProps) => {
         </g>
         {''}
       </svg>
-    </StyledMoonIcon>
+    </Icon>
   );
 };

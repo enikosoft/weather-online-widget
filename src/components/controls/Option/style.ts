@@ -6,11 +6,11 @@ export const StyledOption = styled.li`
   padding: 0px 0px 0px 55px;
   height: 48px;
 
-  &:hover {
+  :hover {
     cursor: pointer;
   }
 
-  &.ellipsis {
+  .ellipsis {
     text-align: left;
     width: 100%;
     white-space: nowrap;

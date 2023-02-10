@@ -15,7 +15,7 @@ export interface ThemeProps {
 export const themeStyles = {
   dark: {
     fontSize: '18px',
-    fontFamily: 'var(--primaryFamily)',
+    fontFamily: 'var(--primaryFontFamily)',
     fontBoldFamily: 'var(--primaryBoldFamily)',
     background: 'var(--black)',
     color: 'var(--white)',
@@ -28,10 +28,12 @@ export const themeStyles = {
     contentBlockBackground: 'var(--primary-grey)',
     scrollColor: 'var(--light-grey)',
     backgroundInput: '#1B1B1B',
+
+    cardBg: '#26262A',
   },
   light: {
     fontSize: '18px',
-    fontFamily: 'var(--primaryFamily)',
+    fontFamily: 'var(--primaryFontFamily)',
     fontBoldFamily: 'var(--primaryBoldFamily)',
     background: 'var(--white)',
     color: 'var(--black)',
@@ -44,5 +46,7 @@ export const themeStyles = {
     contentBlockBackground: 'var(--primary-grey)',
     scrollColor: 'var(--black)',
     backgroundInput: '#F5F5F5',
+
+    cardBg: 'var(--white)',
   },
 };

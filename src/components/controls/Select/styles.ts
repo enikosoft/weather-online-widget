@@ -59,7 +59,7 @@ export const StyledReactSearchAutocomplete = styled.div`
     border: ${(props) => props.theme.border};
     border-radius: ${(props) => props.theme.borderRadius};
     color: ${(props) => props.theme.color};
-    z-index: ${(props) => props.theme.zIndex};
+    z-index: 2;
   }
 `;
 

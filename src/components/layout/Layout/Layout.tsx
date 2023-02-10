@@ -5,8 +5,14 @@ import {themeStyles} from 'styles';
 export const ApplicationLayout = styled(Layout)`
   &&& {
     background: ${(props) => themeStyles[props.theme.mode].background};
-    height: 100vh;
+    min-height: 100vh;
     padding: 40px 60px 40px 40px;
+
+    > .site-layout {
+      background: inherit;
+      padding-left: 40px;
+      margin: 0;
+    }
   }
 `;
 

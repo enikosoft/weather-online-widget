@@ -1,9 +1,10 @@
 export interface City {
   id: string;
   name: string;
-  latitude: number;
-  altitude: number;
-  country: {
-    name: string;
-  };
+  fullAddress: string;
+  lat: number;
+  lng: number;
+  countryName: string;
+  countryCode: string;
+  photos: [string];
 }

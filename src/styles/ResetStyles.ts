@@ -10,7 +10,6 @@ export const ResetStyles = createGlobalStyle`
     margin: 0;
   }
 
-
   main {
     display: block;
   }

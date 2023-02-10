@@ -13,7 +13,7 @@ export const defaultHTheme: DefaultHTheme = {
   padding: '20px 0px',
   fontSize: '32px',
   color: 'var(--white)',
-  fontFamily: 'var(--primaryFamily)',
+  fontFamily: 'var(--primaryFontFamily)',
   boldFontFamily: 'var(--primaryBoldFamily)',
 };
 

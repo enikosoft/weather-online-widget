@@ -19,7 +19,7 @@ const ErrorFallback = (error: any) => {
 
 export const AppProvider = (props: AppProps) => {
   return (
-    <Suspense fallback={<div className="flex items-center justify-center w-screen h-screen">Spinner</div>}>
+    <Suspense fallback={<div>Spinner</div>}>
       <ErrorBoundary FallbackComponent={ErrorFallback}>
         <QueryProvider>
           <Router>{props.children}</Router>

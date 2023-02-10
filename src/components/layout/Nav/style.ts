@@ -8,10 +8,9 @@ export const StyledSider = styled(Sider)`
     border-radius: 16px;
     background: ${(props) => themeStyles[props.theme.mode].navBg};
     font-family: ${(props) => themeStyles[props.theme.mode].fontFamily};
-
     .ant-layout-sider-trigger {
       border-radius: 16px;
-      bottom: auto;
+      bottom: 40px;
     }
 
     .logo {

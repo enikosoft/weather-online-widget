@@ -26,21 +26,3 @@ export const SearchPageLayout = styled(Layout)`
     }
   }
 `;
-
-export const Diq = styled.span`
-  font-family: var(--primaryFontFamily);
-  font-size: 67px;
-  color: white;
-`;
-
-export const Diq2 = styled.span`
-  font-family: 'NotoSans Regular';
-  font-size: 67px;
-  color: white;
-`;
-
-export const Diq3 = styled.span`
-  font-family: 'Underdog';
-  font-size: 67px;
-  color: white;
-`;

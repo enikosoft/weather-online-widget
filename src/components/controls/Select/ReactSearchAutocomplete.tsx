@@ -20,7 +20,6 @@ export interface ReactSearchAutocompleteProps extends ThemeProps {
   showNoResults?: boolean;
   showNoResultsText?: string;
   isLoading?: boolean;
-  onLoadMore?: () => void;
   onSearch: (event: ChangeEvent<HTMLInputElement>) => void;
   onSelect: (item: Option) => void;
   onHover?: (item: Option) => void;
@@ -32,7 +31,6 @@ const ReactSearchAutocomplete = ({
   items = [],
   large,
   medium,
-  onLoadMore,
   onSearch,
   onSelect,
   onFocus,
@@ -95,7 +93,6 @@ const ReactSearchAutocomplete = ({
             setHighlightedItem={handleSetHighlightedItem}
             showNoResultsFlag={showNoResults}
             showNoResultsText={showNoResultsText}
-            onLoadMore={onLoadMore}
           />
         </div>
       </StyledReactSearchAutocomplete>

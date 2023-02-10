@@ -12,7 +12,7 @@ export const StyledHeader = styled(Header)`
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding: 0 0 0 44px;
+    padding: 0;
   }
 `;
 
