@@ -1,7 +1,12 @@
 import {useEffect, useState} from 'react';
 import {BackgroundImage, TimeWrapper} from './styles';
 
-export const CurrentTime = ({cityPhotos}) => {
+interface Props {
+  cityPhotos?: string[];
+}
+
+export const CurrentTime = (props: Props) => {
+  const {cityPhotos} = props;
   const [dateState, setDateState] = useState(new Date());
 
   useEffect(() => {
@@ -10,7 +15,7 @@ export const CurrentTime = ({cityPhotos}) => {
 
   return (
     <TimeWrapper>
-      <BackgroundImage src={cityPhotos} />
+      {cityPhotos && <BackgroundImage src={cityPhotos[0]} />}
       <div className="timer">
         {dateState.toLocaleString('en-US', {
           hour: 'numeric',

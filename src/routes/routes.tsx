@@ -1,5 +1,5 @@
 import Application from 'components/layout/Application';
-import {Dashboard} from 'pages';
+import {Dashboard, Favorite} from 'pages';
 
 export const getRoutes = (switchThema, googleMapApiLoaded) => {
   return [
@@ -8,7 +8,7 @@ export const getRoutes = (switchThema, googleMapApiLoaded) => {
       element: <Application switchThema={switchThema} googleMapApiLoaded={googleMapApiLoaded} />,
       children: [
         {path: '', element: <Dashboard />},
-        {path: 'favorite', element: <div>favorite</div>},
+        {path: 'favorites', element: <Favorite />},
         {path: 'dashboard', element: <Dashboard />},
       ],
     },

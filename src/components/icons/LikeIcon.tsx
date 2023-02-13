@@ -7,26 +7,30 @@ import {IconBaseProps} from './type';
 interface Props {
   liked?: boolean;
   strokeWidth?: number;
+  onClick?(): void;
 }
 
 export const themeStyles = {
   dark: {
     colorLiked: 'var(--primary-blue)',
     strokeColorLiked: 'var(--primary-blue)',
-    color: 'var(--black)',
+    color: 'transparent',
     strokeColor: 'var(--white)',
   },
   light: {
     colorLiked: 'var(--primary-blue)',
     strokeColorLiked: 'var(--primary-blue)',
-    color: 'var(--white)',
+    color: 'transparent',
     strokeColor: 'var(--black)',
   },
 };
 
-const StyledLikeIcon = styled.div<Props>`
+const StyledLikeIcon = styled.button<Props>`
   display: flex;
-
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
   > svg {
     &:hover {
       cursor: pointer;
@@ -52,7 +56,7 @@ const StyledLikeIcon = styled.div<Props>`
 `;
 
 export const LikeIcon = (props: IconBaseProps & Props) => {
-  const {liked = false, strokeWidth = 3, width = 30, height = 30} = props;
+  const {liked = false, strokeWidth = 3, width = 30, height = 30, onClick} = props;
 
   const [theme] = useDarkMode();
 
@@ -71,7 +75,7 @@ export const LikeIcon = (props: IconBaseProps & Props) => {
   }
 
   return (
-    <StyledLikeIcon liked={liked} className="like-icon">
+    <StyledLikeIcon liked={liked} className="like-icon" onClick={onClick}>
       <svg width={width} height={height} viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect width="48" height="48" fill="white" fillOpacity="0.01" />
         <path

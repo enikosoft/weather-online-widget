@@ -1,3 +1,5 @@
+import {Forecast} from './weather';
+
 export interface City {
   id: string;
   name: string;
@@ -6,5 +8,7 @@ export interface City {
   lng: number;
   countryName: string;
   countryCode: string;
-  photos: [string];
+  photos: string[];
 }
+
+export type FavoriteCity = City & Forecast;

@@ -19,20 +19,22 @@ const apiParams = () => {
 export const buildUrl = (latitude: number, longitude: number, forecastParam = 'next7days') => {
   const params = apiParams();
 
-  return `${WEATHER_API_URL}${latitude},${longitude}/${forecastParam}?${new URLSearchParams(params).toString()}`;
+  return `${WEATHER_API_URL}timeline/${latitude},${longitude}/${forecastParam}?${new URLSearchParams(
+    params
+  ).toString()}`;
 };
 
-export const getWeather = (latitude: number, longitude: number) => {
+export const getCityWeather = (latitude: number, longitude: number) => {
   const url = buildUrl(latitude, longitude);
   return weatherServer.get(url);
 };
 
-type QueryFnType = typeof getWeather;
+type QueryFnType = typeof getCityWeather;
 
-export const useWeather = (latitude: number, longitude: number, city: string, country: string) => {
+export const useCityWeather = (latitude: number, longitude: number, city: string, country: string) => {
   return useQuery<ExtractFnReturnType<QueryFnType>>({
     queryKey: ['weather', city, country],
-    queryFn: () => getWeather(latitude, longitude),
+    queryFn: () => getCityWeather(latitude, longitude),
 
     enabled: !!(latitude && longitude),
   });

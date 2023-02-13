@@ -1,4 +1,4 @@
-import {useWeather} from 'api/weather';
+import {useCityWeather} from 'api/weather';
 import {useCity} from 'hooks';
 import {useNavigate} from 'react-router-dom';
 import {mapApiWeatherDataToValues} from 'utils/weatherUtils';
@@ -13,7 +13,7 @@ export const Dashboard = () => {
     return null;
   }
 
-  const {isLoading, data, isError, dataUpdatedAt} = useWeather(city.lat, city.lng, city.name, city.countryCode);
+  const {isLoading, data, isError, dataUpdatedAt} = useCityWeather(city.lat, city.lng, city.name, city.countryCode);
 
   if (isLoading) {
     return <div>Loading.....</div>;
