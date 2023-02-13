@@ -18,6 +18,15 @@ export const StyledCardWrapper = styled.div`
   border-radius: 20px;
   height: ${(props) => props.theme.height};
   color: ${(props) => themeStyles[props.theme.mode].color};
+  box-sizing: border-box;
+  border: ${(props) => props.theme.hoverBorder};
+  border-color: ${(props) => themeStyles[props.theme.mode].cardBg};
+
+  :hover {
+    border: ${(props) => props.theme.hoverBorder};
+    border-color: var(--darked-white);
+    cursor: pointer;
+  }
 `;
 
 export const CardTitle = styled.h2`

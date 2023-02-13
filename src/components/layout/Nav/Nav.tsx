@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import {useState} from 'react';
 import {ThemeProvider} from 'styled-components';
 import {StyledNav, StyledSider} from './style';
 import {items} from './utils';

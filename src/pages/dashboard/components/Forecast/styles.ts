@@ -30,6 +30,11 @@ export const Item = styled.div`
       &-icon {
         width: 60px;
         height: 60px;
+        width: 80px;
+
+        img {
+          width: 75px;
+        }
       }
 
       div &-temperature {

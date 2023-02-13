@@ -15,7 +15,8 @@ export const FavoriteCard = (props: Props) => {
 
   const [liked, toggleFavorite] = useFavorite(city);
 
-  const onClick = () => {
+  const onClick = (e) => {
+    e.stopPropagation();
     toggleFavorite();
   };
 
@@ -33,9 +34,11 @@ export const FavoriteCard = (props: Props) => {
         </div>
         <div className="weather">
           <Row justify="space-between" className="forecast">
-            <Col span={6} className="forecast-icon">
-              <WeatherConditionIcon condition={city.conditionIcon} width={45} height={45} />
-            </Col>
+            {city.conditionIcon && (
+              <Col span={6} className="forecast-icon">
+                <WeatherConditionIcon condition={city.conditionIcon} width={45} height={45} />
+              </Col>
+            )}
             <Col span={10} className="forecast-temperature">
               {city.maxTemp}°C/<span>{city.minTemp}</span>
             </Col>

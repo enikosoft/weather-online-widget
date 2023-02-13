@@ -7,7 +7,7 @@ import {IconBaseProps} from './type';
 interface Props {
   liked?: boolean;
   strokeWidth?: number;
-  onClick?(): void;
+  onClick?(e): void;
 }
 
 export const themeStyles = {

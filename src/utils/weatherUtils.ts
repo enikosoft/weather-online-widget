@@ -32,12 +32,16 @@ export const mapApiWeatherDataToFavoritesValues = (data, cities: City[]): Favori
 
   return cities.map((city: City): FavoriteCity => {
     const currLocation = data?.locations.find((l) => l.id === `${city.lat},${city.lng}`);
-    const fetchedCurrentConditions = currLocation.currentConditions;
-    const fetchedForecastDataOnToday = currLocation.values[0];
+    const fetchedCurrentConditions = currLocation?.currentConditions;
+    const fetchedForecastDataOnToday = currLocation?.values?.[0];
+
+    const noCurrCond = !Object.keys(fetchedCurrentConditions).length;
 
     return {
       ...city,
-      maxTemp: Math.floor(Math.round(fetchedCurrentConditions.temp)),
+      maxTemp: noCurrCond
+        ? Math.floor(Math.round(fetchedForecastDataOnToday.temp))
+        : Math.floor(Math.round(fetchedCurrentConditions.temp)),
       minTemp: Math.floor(Math.round(fetchedForecastDataOnToday.mint)),
       date: moment(fetchedCurrentConditions.datetime).format('DD MMM'),
       day: moment(fetchedCurrentConditions.datetime).format('dddd'),

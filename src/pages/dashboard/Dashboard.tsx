@@ -1,5 +1,6 @@
 import {useCityWeather} from 'api/weather';
 import {useCity} from 'hooks';
+import {useEffect} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {mapApiWeatherDataToValues} from 'utils/weatherUtils';
 import {DashboardLayout} from './DashboardLayout';
@@ -8,10 +9,13 @@ export const Dashboard = () => {
   const {city} = useCity();
   const navigate = useNavigate();
 
-  if (!city) {
-    navigate('/app/dashboard', {state: {city}});
-    return null;
-  }
+  if (!city) return null;
+
+  useEffect(() => {
+    if (!city) {
+      navigate('/', {state: {}});
+    }
+  }, []);
 
   const {isLoading, data, isError, dataUpdatedAt} = useCityWeather(city.lat, city.lng, city.name, city.countryCode);
 

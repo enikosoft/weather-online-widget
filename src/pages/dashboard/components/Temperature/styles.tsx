@@ -25,6 +25,10 @@ export const Wrapper = styled.div`
       .condition_icon {
         width: 100%;
         height: 150px;
+
+        img {
+          width: 205px;
+        }
       }
 
       .description {
