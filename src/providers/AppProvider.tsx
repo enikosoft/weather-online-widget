@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, {ReactNode, Suspense} from 'react';
+import {ReactNode} from 'react';
 import {ErrorBoundary} from 'react-error-boundary';
-import {BrowserRouter as Router} from 'react-router-dom';
 import QueryProvider from './ReactQueryProvider';
 
 interface AppProps {
@@ -19,12 +18,8 @@ const ErrorFallback = (error: any) => {
 
 export const AppProvider = (props: AppProps) => {
   return (
-    <Suspense fallback={<div>Spinner</div>}>
-      <ErrorBoundary FallbackComponent={ErrorFallback}>
-        <QueryProvider>
-          <Router>{props.children}</Router>
-        </QueryProvider>
-      </ErrorBoundary>
-    </Suspense>
+    <ErrorBoundary FallbackComponent={ErrorFallback}>
+      <QueryProvider>{props.children}</QueryProvider>
+    </ErrorBoundary>
   );
 };

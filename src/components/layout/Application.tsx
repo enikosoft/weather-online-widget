@@ -5,16 +5,15 @@ import Header from './Header/Header';
 import {ApplicationLayout} from './Layout';
 import Nav from './Nav/Nav';
 import {withRouter, RouterProps} from 'hoc';
-import {useState} from 'react';
 import {City} from 'types/city';
+import {useCityStore} from 'state/city';
 
 interface Props extends RouterProps {
-  googleMapApiLoaded: boolean;
   switchThema(): void;
 }
 
-const Application = ({switchThema, googleMapApiLoaded, location}: Props) => {
-  const [city, setCity] = useState<City | undefined>(location.state?.city);
+const Application = ({switchThema}: Props) => {
+  const [city, setCity] = useCityStore((state) => [state.cityInContext, state.add]);
 
   const selectCity = (value: City) => setCity(value);
 
@@ -22,9 +21,8 @@ const Application = ({switchThema, googleMapApiLoaded, location}: Props) => {
     <>
       <ApplicationLayout>
         <Nav />
-
         <Layout className="site-layout">
-          {googleMapApiLoaded && <Header city={city} selectCity={selectCity} switchThema={switchThema} />}
+          <Header city={city} selectCity={selectCity} switchThema={switchThema} />
           <Content>
             <Outlet context={{city, setCity}} />
           </Content>

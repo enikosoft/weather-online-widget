@@ -3,6 +3,7 @@ import {weatherServer} from './axios';
 import {useQuery} from 'react-query';
 import {WEATHER_API_KEY, WEATHER_API_URL} from 'config/api';
 import {City} from 'types/city';
+import {defer} from 'react-router-dom';
 
 const apiParams = (locations: string) => {
   return {
@@ -37,13 +38,36 @@ export const getCityWeather = (locations: string) => {
 
 type QueryFnType = typeof getCityWeather;
 
+// for using query as hook
 export const useFavoritesWeather = (cities: City[]) => {
   const locations = cities.map((city) => `${city.lat},${city.lng}`).join('|');
-  const citiesNames = cities.map((city) => city.name).join(',');
 
   return useQuery<ExtractFnReturnType<QueryFnType>>({
-    queryKey: ['weather', citiesNames],
+    queryKey: ['weather-for-favorites'],
     queryFn: () => getCityWeather(locations),
     enabled: !!locations,
+  });
+};
+
+export interface FavoriteLoader {
+  favoritesPromise: ExtractFnReturnType<QueryFnType>;
+}
+
+// for using via react-router loader
+export const favoritesListQuery = () => {
+  const favoritesJSON = window.localStorage.getItem('favorites') || '{}';
+  const cities = (JSON.parse(favoritesJSON)?.state?.favorites as City[]) || [];
+  const locations = cities.map((city) => `${city.lat},${city.lng}`).join('|');
+
+  return {
+    queryKey: ['weather-for-favorites', locations],
+    queryFn: () => getCityWeather(locations),
+    enabled: !!locations,
+  };
+};
+
+export const favoritesLoader = (queryClient) => async () => {
+  return defer({
+    favoritesPromise: queryClient.fetchQuery(favoritesListQuery()),
   });
 };

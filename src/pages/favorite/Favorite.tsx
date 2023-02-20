@@ -1,22 +1,30 @@
-import {useFavoritesWeather} from 'api/bulkWeather';
-import {useFavorite} from 'hooks';
+import {FavoriteLoader} from 'api/bulkWeather';
+import {Suspense, useEffect} from 'react';
+import {Await, useLoaderData} from 'react-router-dom';
 import {mapApiWeatherDataToFavoritesValues} from 'utils/weatherUtils';
 import {FavoriteLayout} from './FavoriteLayout';
+import {useFavoritesStore} from 'state';
 
 export const Favorite = () => {
-  const [, , cities] = useFavorite();
+  const favorites = useFavoritesStore((state) => state.favorites);
 
-  const {isLoading, data, isError} = useFavoritesWeather(cities);
+  const {favoritesPromise} = useLoaderData() as FavoriteLoader;
 
-  if (isLoading) {
-    return <div>Loading.....</div>;
-  }
+  useEffect(() => {
+    console.log('Favorite USE EFFECT******');
+  }, []);
 
-  if (isError) {
-    return <div>Error.....</div>;
-  }
+  console.log('Favorite RENDER******');
 
-  const favoritesList = (data && mapApiWeatherDataToFavoritesValues(data?.data, cities)) || [];
+  return (
+    <Suspense fallback={<p style={{background: 'green'}}>RRRRRRRRRRR</p>}>
+      <Await resolve={favoritesPromise} errorElement={<div>Oops!</div>}>
+        {(data) => {
+          const favoritesList = (data && mapApiWeatherDataToFavoritesValues(data?.data, favorites)) || [];
 
-  return <FavoriteLayout favorites={favoritesList} />;
+          return <FavoriteLayout favorites={favoritesList} />;
+        }}
+      </Await>
+    </Suspense>
+  );
 };

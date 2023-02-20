@@ -25,7 +25,7 @@ export const StyledCardWrapper = styled.div`
   :hover {
     border: ${(props) => props.theme.hoverBorder};
     border-color: var(--darked-white);
-    cursor: pointer;
+    cursor: ${(props) => (props.theme.clickable ? 'pointer' : 'initial')};
   }
 `;
 

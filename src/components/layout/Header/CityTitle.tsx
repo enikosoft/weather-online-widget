@@ -1,6 +1,6 @@
 import {LikeIcon, MarkerIcon} from 'components/icons';
 import {withTheme} from 'hoc';
-import {useFavorite} from 'hooks';
+import {useFavoritesStore} from 'state';
 import {ThemeContext, ThemeProps} from 'styles';
 import {City} from 'types/city';
 import {HeaderSubText, HeaderText, CityTitleStyled} from './style';
@@ -8,10 +8,10 @@ import {HeaderSubText, HeaderText, CityTitleStyled} from './style';
 export const CityTitle = withTheme((props: ThemeProps & {city: City}) => {
   const {city} = props;
 
-  const [liked, toggleFavorite] = useFavorite(city);
+  const [isLiked, toggleFavorite] = useFavoritesStore((state) => [state.isLiked(city.id), state.toggle]);
 
   const onClick = () => {
-    toggleFavorite();
+    toggleFavorite(city);
   };
 
   return (
@@ -20,7 +20,7 @@ export const CityTitle = withTheme((props: ThemeProps & {city: City}) => {
       <HeaderText>{props.city.name},</HeaderText>
       <HeaderSubText>{props.city.countryName}</HeaderSubText>
 
-      <LikeIcon onClick={onClick} liked={liked} />
+      <LikeIcon onClick={onClick} liked={isLiked} />
     </CityTitleStyled>
   );
 });

@@ -6,9 +6,20 @@ import {CenteredWrapper, H} from 'components/layout';
 import {CitySelect} from 'components/core/CitySelect';
 import {City} from 'types/city';
 import {mapDataToCity} from 'utils/citiesUtils';
+import {GOOGLE_API_KEY} from 'config/api';
+import {useJsApiLoader} from '@react-google-maps/api';
+import {useCityStore} from 'state/city';
 
-export const SearchPage = ({googleMapApiLoaded}) => {
+export const SearchPage = () => {
   const navigate = useNavigate();
+  const setCity = useCityStore((state) => state.add);
+
+  const {isLoaded, loadError} = useJsApiLoader({
+    libraries: ['places'],
+    language: 'en',
+    preventGoogleFontsLoading: true,
+    googleMapsApiKey: GOOGLE_API_KEY,
+  });
 
   const handleDetectLocation = () => {
     try {
@@ -31,15 +42,8 @@ export const SearchPage = ({googleMapApiLoaded}) => {
           const city = mapDataToCity(details);
 
           if (city) {
-            navigate('/app/dashboard', {
-              state: {
-                city: {
-                  ...city,
-                  lat,
-                  lng,
-                },
-              },
-            });
+            setCity(city);
+            navigate('/app/dashboard');
           }
         }
       });
@@ -49,7 +53,8 @@ export const SearchPage = ({googleMapApiLoaded}) => {
   };
 
   const handleSelect = (city: City) => {
-    navigate('/app/dashboard', {state: {city}});
+    setCity(city);
+    navigate('/app/dashboard');
   };
 
   return (
@@ -68,7 +73,7 @@ export const SearchPage = ({googleMapApiLoaded}) => {
           Find a settlement or determine your location by clicking the button at the top right!
         </H>
 
-        <div style={{marginTop: '60px'}}>{googleMapApiLoaded && <CitySelect large onSelect={handleSelect} />}</div>
+        <div style={{marginTop: '60px'}}>{isLoaded && <CitySelect large onSelect={handleSelect} />}</div>
       </CenteredWrapper>
     </SearchPageLayout>
   );

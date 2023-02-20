@@ -1,7 +1,7 @@
 import {Col, Row} from 'antd';
 import {LikeIcon, WeatherConditionIcon} from 'components/icons';
-import {useFavorite} from 'hooks';
 import {CurrentTime} from 'pages/dashboard';
+import {useFavoritesStore} from 'state';
 import {FavoriteCity} from 'types/city';
 import {StyledFavoriteCard} from './styles';
 
@@ -13,12 +13,14 @@ export const FavoriteCard = (props: Props) => {
   const {city} = props;
   const {photos, name, countryName} = city;
 
-  const [liked, toggleFavorite] = useFavorite(city);
+  const [isLiked, toggle] = useFavoritesStore((state) => [state.isLiked(city.id), state.toggle]);
 
   const onClick = (e) => {
     e.stopPropagation();
-    toggleFavorite();
+    toggle(city);
   };
+
+  console.log('FavoriteCard RENDER ********');
 
   return (
     <StyledFavoriteCard>
@@ -30,7 +32,7 @@ export const FavoriteCard = (props: Props) => {
           <span>
             {name}, {countryName}
           </span>
-          <LikeIcon liked={liked} onClick={onClick} />
+          <LikeIcon liked={isLiked} onClick={onClick} />
         </div>
         <div className="weather">
           <Row justify="space-between" className="forecast">

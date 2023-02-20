@@ -1,39 +1,48 @@
-import {useCityWeather} from 'api/weather';
-import {useCity} from 'hooks';
-import {useEffect} from 'react';
-import {useNavigate} from 'react-router-dom';
+import {CityWeatherLoader, cityWeatherQuery} from 'api/weather';
+import {Suspense, useEffect, useLayoutEffect} from 'react';
+import {useQuery} from 'react-query';
+import {Await, useLoaderData, useNavigate} from 'react-router-dom';
+import {useCityStore} from 'state/city';
 import {mapApiWeatherDataToValues} from 'utils/weatherUtils';
 import {DashboardLayout} from './DashboardLayout';
 
 export const Dashboard = () => {
-  const {city} = useCity();
   const navigate = useNavigate();
 
-  if (!city) return null;
+  const [city] = useCityStore((state) => [state.cityInContext]);
+
+  const {cityWeatherPromise} = useLoaderData() as CityWeatherLoader;
 
   useEffect(() => {
+    console.log('Dashboard useEffect ---------->');
     if (!city) {
-      navigate('/', {state: {}});
+      navigate('/', {replace: true});
     }
   }, []);
 
-  const {isLoading, data, isError, dataUpdatedAt} = useCityWeather(city.lat, city.lng, city.name, city.countryCode);
+  useLayoutEffect(() => {
+    console.log('Dashboard useLayoutEffect ---------->');
+  }, []);
 
-  if (isLoading) {
-    return <div>Loading.....</div>;
-  }
+  console.log('Dashboard  RENDER ---------->');
 
-  if (isError) {
-    return <div>Error.....</div>;
-  }
+  return city ? (
+    <Suspense fallback={<p style={{background: 'green'}}>RRRRRRRRRRR</p>}>
+      <Await resolve={cityWeatherPromise} errorElement={<div>Oops!</div>}>
+        {(data) => {
+          const result = data && mapApiWeatherDataToValues(data?.data);
 
-  const result = data && mapApiWeatherDataToValues(data.data);
-
-  if (!result || !result.weather) {
-    return <div>Error.....</div>;
-  }
-
-  return (
-    <DashboardLayout dataUpdatedAt={dataUpdatedAt} weather={result.weather} forecast={result.forecast} city={city} />
-  );
+          const {dataUpdatedAt} = useQuery(cityWeatherQuery());
+          return (
+            <DashboardLayout
+              dataUpdatedAt={dataUpdatedAt}
+              weather={result.weather}
+              forecast={result.forecast}
+              city={city}
+            />
+          );
+        }}
+      </Await>
+    </Suspense>
+  ) : null;
 };

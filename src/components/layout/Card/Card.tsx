@@ -8,7 +8,6 @@ interface Props {
   height?: number;
   title?: string;
   titleSize?: number;
-
   children: ReactNode;
   clickable?: boolean;
   onClick?(): void;
@@ -24,6 +23,7 @@ export const Card = (props: Props) => {
     ...(height ? {height: `${height}px`} : {height: '100%'}),
     ...css,
     ...(clickable ? {hoverBorder: `1px solid`} : {}),
+    clickable,
   };
 
   const handleOnlcik = () => {
