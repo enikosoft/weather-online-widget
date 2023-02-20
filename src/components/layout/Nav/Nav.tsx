@@ -1,9 +1,17 @@
-import {useState} from 'react';
+import {useLayoutEffect, useState} from 'react';
+import {useLocation} from 'react-router-dom';
 import {ThemeProvider} from 'styled-components';
 import {StyledNav, StyledSider} from './style';
 import {items} from './utils';
 
 const Nav = () => {
+  const location = useLocation();
+  const [selectedMenu, setSelectedMenu] = useState<string>('');
+
+  useLayoutEffect(() => {
+    setSelectedMenu(location.pathname);
+  }, [location.pathname]);
+
   const [collapsed, setCollapsed] = useState<boolean>(true);
 
   const handleCollapse = (value) => setCollapsed(value);
@@ -15,7 +23,7 @@ const Nav = () => {
           W.
         </div>
 
-        <StyledNav defaultSelectedKeys={['1']} mode="inline" items={items} />
+        <StyledNav selectedKeys={[selectedMenu]} mode="inline" items={items} />
       </StyledSider>
     </ThemeProvider>
   );

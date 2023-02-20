@@ -1,4 +1,4 @@
-import {HeartOutlined, HomeOutlined, SettingOutlined} from '@ant-design/icons';
+import {HeartOutlined, HomeOutlined} from '@ant-design/icons';
 import {MenuProps} from 'antd';
 import {Link} from 'react-router-dom';
 
@@ -16,7 +16,7 @@ function getItem(label: React.ReactNode, key: React.Key, icon?: React.ReactNode,
 export const items: MenuItem[] = [
   getItem(
     'Dashboard',
-    '1',
+    '/app/dashboard',
     <div>
       <Link to="/app/dashboard">
         <HomeOutlined style={{fontSize: '24px'}} />
@@ -25,7 +25,7 @@ export const items: MenuItem[] = [
   ),
   getItem(
     'Saved',
-    '2',
+    '/app/favorites',
     <div>
       <Link to="/app/favorites">
         <HeartOutlined style={{fontSize: '24px'}} />
