@@ -1,5 +1,6 @@
 import {TemperatureIcon} from 'components/icons';
 import {DashboardLittleComponent} from './styles';
+import {P} from 'components/layout';
 
 export const FeelsLikeTemperature = ({feelsLike = 0}) => {
   return (
@@ -10,7 +11,7 @@ export const FeelsLikeTemperature = ({feelsLike = 0}) => {
       </div>
       <div className="right-side">
         <div style={{width: '16px', height: '16px'}} />
-        <p>Humidity is making it feel hotter</p>
+        <P>Humidity is making it feel hotter</P>
       </div>
     </DashboardLittleComponent>
   );

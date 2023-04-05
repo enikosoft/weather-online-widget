@@ -31,4 +31,12 @@ export const CenteredWrapper = styled.div`
   }
 `;
 
+export const P = styled.p`
+  font-family: ${(props) => themeStyles[props.theme.mode].fontFamily};
+  color: ${(props) => themeStyles[props.theme.mode].infoText};
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+`;
+
 export default ApplicationLayout;

@@ -20,8 +20,6 @@ export const FavoriteCard = (props: Props) => {
     toggle(city);
   };
 
-  console.log('FavoriteCard RENDER ********');
-
   return (
     <StyledFavoriteCard>
       <div className="city-photo">
@@ -38,14 +36,14 @@ export const FavoriteCard = (props: Props) => {
           <Row justify="space-between" className="forecast">
             {city.conditionIcon && (
               <Col span={6} className="forecast-icon">
-                <WeatherConditionIcon condition={city.conditionIcon} width={45} height={45} />
+                <WeatherConditionIcon condition={city.conditionIcon} width={65} height={45} />
               </Col>
             )}
-            <Col span={10} className="forecast-temperature">
+            <Col span={8} className="forecast-temperature">
               {city.maxTemp}°C/<span>{city.minTemp}</span>
             </Col>
-            <Col span={8} className="forecast-date">
-              <CurrentTime />
+            <Col span={10} className="forecast-date">
+              <CurrentTime compact city={city} />
             </Col>
           </Row>
         </div>

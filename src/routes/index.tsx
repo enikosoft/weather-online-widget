@@ -5,7 +5,7 @@ import {Dashboard, Favorite, SearchPage} from 'pages';
 import {queryClient} from 'providers';
 import {createBrowserRouter} from 'react-router-dom';
 
-export const AppRoutes = (switchTheme) => {
+export const AppRoutes = ({switchTheme}) => {
   return createBrowserRouter([
     {
       path: '/',
@@ -14,7 +14,6 @@ export const AppRoutes = (switchTheme) => {
 
     {
       path: '/app',
-      //errorElement: <div>Error</div>,
       element: <Application switchThema={switchTheme} />,
       children: [
         {

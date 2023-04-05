@@ -1,3 +1,7 @@
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+import tz from 'dayjs/plugin/timezone';
+import timezones from 'timezones-list';
 import {Option} from 'components/controls/Option';
 import {City} from 'types/city';
 
@@ -15,6 +19,9 @@ export const mapDataToOptions = (places: google.maps.places.AutocompletePredicti
 // Map result data from Google Place Api to city type
 export const mapDataToCity = (data: google.maps.places.PlaceResult | string): City | false => {
   if (typeof data === 'string') return false;
+
+  dayjs.extend(utc);
+  dayjs.extend(tz);
 
   const {place_id, geometry} = data;
 
@@ -38,6 +45,15 @@ export const mapDataToCity = (data: google.maps.places.PlaceResult | string): Ci
     return false;
   }
 
+  const utcOffsetMinutes = data?.utc_offset_minutes || 0;
+
+  const utcOffsetString = dayjs().utcOffset(utcOffsetMinutes).format('Z');
+
+  const timezoneNames = timezones;
+  const timezoneName = timezoneNames.find((tzName) => {
+    return tzName.utc === utcOffsetString;
+  })?.label;
+
   return {
     id: place_id,
     name,
@@ -47,5 +63,7 @@ export const mapDataToCity = (data: google.maps.places.PlaceResult | string): Ci
     countryName,
     countryCode,
     photos: [photo || ''],
+    utcOffset: utcOffsetString,
+    timezone: timezoneName,
   };
 };

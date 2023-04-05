@@ -28,8 +28,9 @@ export const Item = styled.div`
       }
 
       &-icon {
-        width: 60px;
-        height: 60px;
+        height: 100%;
+        display: flex;
+        align-items: center;
         width: 80px;
 
         img {
@@ -38,17 +39,18 @@ export const Item = styled.div`
       }
 
       div &-temperature {
-        font-size: 28px;
-
-        span {
-          font-size: 18px;
-          color: var(--darked-white);
+        font-size: 20px;
+        display: flex;
+        p {
+          font-size: 16px;
         }
       }
 
       div &-date,
       div &-day {
-        color: var(--darked-white);
+        > p {
+          font-size: 16px;
+        }
       }
     }
   }

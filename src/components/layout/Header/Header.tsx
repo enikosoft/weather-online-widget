@@ -10,7 +10,7 @@ const Header = ({switchThema, selectCity, city}) => {
     selectCity(item);
   };
 
-  const {isLoaded, loadError} = useJsApiLoader({
+  const {isLoaded} = useJsApiLoader({
     libraries: ['places'],
     language: 'en',
     preventGoogleFontsLoading: true,

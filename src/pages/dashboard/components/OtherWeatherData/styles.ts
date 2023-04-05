@@ -40,17 +40,27 @@ export const TimeWrapper = styled.div`
   height: inherit;
   overflow: hidden;
   border-radius: inherit;
-
-  .timer {
-    font-family: ${(props) => themeStyles[props.theme.mode].fontBoldFamily};
-    color: ${(props) => themeStyles[props.theme.mode].color};
-    font-size: 120px;
+  .city-time {
+    display: flex;
+    flex-direction: column;
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
     width: 100%;
+    transform: translate(-50%, -50%);
     text-align: center;
+    color: ${(props) => themeStyles[props.theme.mode].color};
+
+    .timer {
+      font-family: ${(props) => themeStyles[props.theme.mode].fontBoldFamily};
+      font-size: 120px;
+    }
+
+    .timezone {
+      font-family: ${(props) => themeStyles[props.theme.mode].fontBoldFamily};
+      font-size: 20px;
+      padding-top: 20px;
+    }
   }
 `;
 

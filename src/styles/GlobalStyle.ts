@@ -25,6 +25,4 @@ export const size = {
 
   sm: `(min-width: 576px)`,
   xl: `(min-width: 1200px)`,
-
-  // desktop: '2560px'
 };

@@ -19,7 +19,7 @@ export const items: MenuItem[] = [
     '/app/dashboard',
     <div>
       <Link to="/app/dashboard">
-        <HomeOutlined style={{fontSize: '24px'}} />
+        <HomeOutlined style={{fontSize: '20px'}} />
       </Link>
     </div>
   ),
@@ -28,7 +28,7 @@ export const items: MenuItem[] = [
     '/app/favorites',
     <div>
       <Link to="/app/favorites">
-        <HeartOutlined style={{fontSize: '24px'}} />
+        <HeartOutlined style={{fontSize: '20px'}} />
       </Link>
     </div>
   ),

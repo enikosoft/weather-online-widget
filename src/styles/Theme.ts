@@ -14,7 +14,7 @@ export interface ThemeProps {
 
 export const themeStyles = {
   dark: {
-    fontSize: '18px',
+    fontSize: '16px',
     fontFamily: 'var(--primaryFontFamily)',
     fontBoldFamily: 'var(--primaryBoldFamily)',
     background: 'var(--black)',
@@ -30,6 +30,8 @@ export const themeStyles = {
     backgroundInput: '#1B1B1B',
 
     cardBg: '#26262A',
+
+    infoText: 'var(--darked-white)',
   },
   light: {
     fontSize: '18px',
@@ -48,5 +50,7 @@ export const themeStyles = {
     backgroundInput: '#F5F5F5',
 
     cardBg: 'var(--white)',
+
+    infoText: 'var(--primary-grey)',
   },
 };

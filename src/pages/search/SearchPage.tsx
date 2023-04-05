@@ -14,7 +14,7 @@ export const SearchPage = () => {
   const navigate = useNavigate();
   const setCity = useCityStore((state) => state.add);
 
-  const {isLoaded, loadError} = useJsApiLoader({
+  const {isLoaded} = useJsApiLoader({
     libraries: ['places'],
     language: 'en',
     preventGoogleFontsLoading: true,

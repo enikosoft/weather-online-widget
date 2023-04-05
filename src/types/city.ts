@@ -9,6 +9,8 @@ export interface City {
   countryName: string;
   countryCode: string;
   photos: string[];
+  utcOffset: string;
+  timezone?: string;
 }
 
 export type FavoriteCity = City & Forecast;

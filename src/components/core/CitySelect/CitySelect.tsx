@@ -34,7 +34,7 @@ export const CitySelect = (props: Props) => {
   const getCityDetails = useCallback(async (placeId: string) => {
     const parameter = {
       placeId,
-      fields: ['place_id', 'geometry', 'address_components', 'photos'],
+      fields: ['place_id', 'geometry', 'address_components', 'photos', 'utc_offset_minutes'],
     };
 
     return getDetails(parameter);

@@ -26,9 +26,10 @@ export const buildUrl = (latitude: number, longitude: number, forecastParam = 'n
   ).toString()}`;
 };
 
-export const getCityWeather = (latitude: number, longitude: number) => {
+export const getCityWeather = async (latitude: number, longitude: number) => {
   const url = buildUrl(latitude, longitude);
-  return weatherServer.get(url);
+  const res = weatherServer.get(url);
+  return res;
 };
 
 type QueryFnType = typeof getCityWeather;
@@ -50,6 +51,7 @@ export interface CityWeatherLoader {
 // for using via react-router loader
 export const cityWeatherQuery = () => {
   const city = (JSON.parse(window.sessionStorage.getItem('selectedCity') || '')?.state as City) || undefined;
+
   return {
     queryKey: ['weather', city?.name, city?.countryName],
     queryFn: () => city && getCityWeather(city.lat, city.lng),

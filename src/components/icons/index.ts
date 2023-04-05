@@ -9,5 +9,7 @@ export * from './SunRiseIcon';
 export * from './HumidityIcon';
 export * from './EyeIcon';
 export * from './TemperatureIcon';
+export * from './WindDirectionIcon';
+export * from './WindSpeedIcon';
 
 export * from './weather-conditions/WeatherConditionIcon';

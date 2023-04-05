@@ -34,7 +34,7 @@ export const Wrapper = styled.div`
       .description {
         font-family: ${(props) => themeStyles[props.theme.mode].fontFamily};
         font-size: 14px;
-        color: var(--darked-white);
+        color: ${(props) => themeStyles[props.theme.mode].infoText};
       }
     }
   }

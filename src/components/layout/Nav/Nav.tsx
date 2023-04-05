@@ -18,7 +18,7 @@ const Nav = () => {
 
   return (
     <ThemeProvider theme={{collapsed}}>
-      <StyledSider width={200} collapsedWidth={80} collapsible collapsed={collapsed} onCollapse={handleCollapse}>
+      <StyledSider width={200} collapsedWidth={65} collapsible collapsed={collapsed} onCollapse={handleCollapse}>
         <div className="logo" style={{height: 32, margin: 16}}>
           W.
         </div>

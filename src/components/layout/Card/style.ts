@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {themeStyles} from 'styles';
+import {ThemeContext, themeStyles} from 'styles';
 
 export interface DefaultCardStyles {
   padding: string;
@@ -21,7 +21,10 @@ export const StyledCardWrapper = styled.div`
   box-sizing: border-box;
   border: ${(props) => props.theme.hoverBorder};
   border-color: ${(props) => themeStyles[props.theme.mode].cardBg};
-
+  -webkit-box-shadow: 0px 0px 12px 11px rgba(245, 245, 245, 1);
+  -moz-box-shadow: 0px 0px 12px 11px rgba(245, 245, 245, 1);
+  box-shadow: ${(props) =>
+    props.theme.mode === ThemeContext.light ? '0px 0px 12px 11px rgba(245, 245, 245, 1)' : 'none'};
   :hover {
     border: ${(props) => props.theme.hoverBorder};
     border-color: var(--darked-white);

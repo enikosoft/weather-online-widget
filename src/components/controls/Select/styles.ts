@@ -18,8 +18,8 @@ export interface DefaultSelectTheme {
 }
 
 export const defaultSelectTheme: DefaultSelectTheme = {
-  height: '56px',
-  maxWidth: '560px',
+  height: '50px',
+  maxWidth: '90%',
   borderRadius: '20px',
   backgroundColor: 'white',
   hoverBackgroundColor: '#eee',
