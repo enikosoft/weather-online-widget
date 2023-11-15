@@ -1,4 +1,5 @@
-import moment from 'moment';
+import {DateTime} from 'luxon';
+
 import {City, FavoriteCity} from 'types/city';
 import {Forecast, Weather} from 'types/weather';
 
@@ -17,8 +18,8 @@ export const mapApiWeatherDataToValues = (data): {weather: Weather; forecast: Fo
     return {
       maxTemp: Math.floor(Math.round(day.tempmax)),
       minTemp: Math.floor(Math.round(day.tempmin)),
-      date: moment.unix(day.datetimeEpoch).format('DD MMM'),
-      day: moment.unix(day.datetimeEpoch).format('dddd'),
+      date: DateTime.fromSeconds(day.datetimeEpoch).toFormat('dd LLL'),
+      day: DateTime.fromSeconds(day.datetimeEpoch).toFormat('cccc'),
       conditionIcon: day.icon,
     };
   });
@@ -37,14 +38,15 @@ export const mapApiWeatherDataToFavoritesValues = (data, cities: City[]): Favori
 
     const noCurrCond = !Object.keys(fetchedCurrentConditions).length;
 
+    console.log('fetchedCurrentConditions.datetime', fetchedCurrentConditions.datetime)
     return {
       ...city,
       maxTemp: noCurrCond
         ? Math.floor(Math.round(fetchedForecastDataOnToday.temp))
         : Math.floor(Math.round(fetchedCurrentConditions.temp)),
       minTemp: Math.floor(Math.round(fetchedForecastDataOnToday.mint)),
-      date: moment(fetchedCurrentConditions.datetime).format('DD MMM'),
-      day: moment(fetchedCurrentConditions.datetime).format('dddd'),
+      date: DateTime.fromISO(fetchedCurrentConditions.datetime).toFormat('dd LLL'),
+      day: DateTime.fromISO(fetchedCurrentConditions.datetime).toFormat('cccc'),
       conditionIcon: fetchedCurrentConditions.icon,
     };
   });

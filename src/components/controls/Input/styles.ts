@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 export const SuffixWrapper = styled.div`
+  flex-direction: column;
+  justify-content: center;
   width: ${(props) => (props.theme.large ? '55px' : 'auto')};
   height: ${(props) => (props.theme.large ? '55px' : 'auto')};
   padding-right: ${(props) => (props.theme.large ? '0px' : '20px')};

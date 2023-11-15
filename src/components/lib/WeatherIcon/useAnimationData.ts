@@ -1,19 +1,19 @@
 import {useEffect, useState} from 'react';
 
-export enum ImagePath {
-  ConditionIcons = './../components/icons/weather-conditions/img/',
+export enum WeatherConditionAnimationPath {
+  ConditionIcons = './iconsAnimationData',
 }
 
-export const useImage = (fileName: string, filepath: ImagePath) => {
+export const useAnimationData = (fileName: string, filepath: WeatherConditionAnimationPath) => {
   const [loading, setLoading] = useState<boolean>(true);
-  const [image, setImage] = useState();
+  const [animation, setAnimation] = useState();
 
   useEffect(() => {
     const fetchImage = async () => {
       try {
-        if (filepath === ImagePath.ConditionIcons) {
-          const response = await import(`./../components/icons/weather-conditions/${fileName}.json`);
-          setImage(response.default);
+        if (filepath === WeatherConditionAnimationPath.ConditionIcons) {
+          const response = await import(`./iconsAnimationData/${fileName}.json`);
+          setAnimation(response.default);
         }
       } catch (err) {
         console.error(err);
@@ -29,6 +29,6 @@ export const useImage = (fileName: string, filepath: ImagePath) => {
 
   return {
     loading,
-    image,
+    animation,
   };
 };

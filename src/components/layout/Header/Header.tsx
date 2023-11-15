@@ -4,14 +4,20 @@ import {CitySelectWrapper, StyledHeader} from './style';
 import {City} from 'types/city';
 import {useJsApiLoader} from '@react-google-maps/api';
 import {GOOGLE_API_KEY} from 'config/api';
+import { useLocation, useNavigation } from 'react-router-dom';
+
+const libraries: ("drawing" | "geometry" | "localContext" | "places" | "visualization")[] = ['places']
 
 const Header = ({switchThema, selectCity, city}) => {
+  const location = useLocation()
+  const onlyForDashboard = location.pathname.includes('dashboard')
+
   const handleSelect = (item: City) => {
     selectCity(item);
   };
 
   const {isLoaded} = useJsApiLoader({
-    libraries: ['places'],
+    libraries,
     language: 'en',
     preventGoogleFontsLoading: true,
     googleMapsApiKey: GOOGLE_API_KEY,
@@ -19,7 +25,7 @@ const Header = ({switchThema, selectCity, city}) => {
 
   return (
     <StyledHeader>
-      {city && <CityTitle city={city} />}
+      {onlyForDashboard && city && <CityTitle city={city} />}
 
       <CitySelectWrapper>{isLoaded && <CitySelect medium onSelect={handleSelect} />}</CitySelectWrapper>
       <ToggleThemeButton switchThema={switchThema} />

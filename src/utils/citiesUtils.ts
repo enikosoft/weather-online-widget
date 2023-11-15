@@ -1,9 +1,7 @@
-import dayjs from 'dayjs';
-import utc from 'dayjs/plugin/utc';
-import tz from 'dayjs/plugin/timezone';
-import timezones from 'timezones-list';
+
 import {Option} from 'components/controls/Option';
 import {City} from 'types/city';
+import { getTimeZoneId } from 'api/timezone';
 
 // Map data from autocomplete `AutocompletePrediction` to options
 export const mapDataToOptions = (places: google.maps.places.AutocompletePrediction[]): Option[] => {
@@ -17,17 +15,20 @@ export const mapDataToOptions = (places: google.maps.places.AutocompletePredicti
 };
 
 // Map result data from Google Place Api to city type
-export const mapDataToCity = (data: google.maps.places.PlaceResult | string): City | false => {
+export const mapDataToCity = async (data: google.maps.places.PlaceResult | string): Promise<City | false> => {
   if (typeof data === 'string') return false;
-
-  dayjs.extend(utc);
-  dayjs.extend(tz);
 
   const {place_id, geometry} = data;
 
   // if lat or lng are undefined -> fetch weather by city name
   const lat = geometry?.location?.lat() || 0;
   const lng = geometry?.location?.lng() || 0;
+
+  const tz = await getTimeZoneId(lat, lng) || {
+    timeZoneId: 'undefined',
+    timeZoneName: 'undefined',
+    gmt: 'undefined'
+  }
 
   const name = data?.address_components?.find(
     (cmp) => cmp.types.includes('locality') && cmp.types.includes('political')
@@ -45,14 +46,6 @@ export const mapDataToCity = (data: google.maps.places.PlaceResult | string): Ci
     return false;
   }
 
-  const utcOffsetMinutes = data?.utc_offset_minutes || 0;
-
-  const utcOffsetString = dayjs().utcOffset(utcOffsetMinutes).format('Z');
-
-  const timezoneNames = timezones;
-  const timezoneName = timezoneNames.find((tzName) => {
-    return tzName.utc === utcOffsetString;
-  })?.label;
 
   return {
     id: place_id,
@@ -63,7 +56,6 @@ export const mapDataToCity = (data: google.maps.places.PlaceResult | string): Ci
     countryName,
     countryCode,
     photos: [photo || ''],
-    utcOffset: utcOffsetString,
-    timezone: timezoneName,
+    timezone: tz,
   };
 };

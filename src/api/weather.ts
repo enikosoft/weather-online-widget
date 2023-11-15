@@ -46,6 +46,7 @@ export const useCityWeather = (latitude: number, longitude: number, city: string
 
 export interface CityWeatherLoader {
   cityWeatherPromise: ExtractFnReturnType<QueryFnType>;
+  cityTimeZonePromise: ExtractFnReturnType<QueryFnType>;
 }
 
 // for using via react-router loader
@@ -62,5 +63,6 @@ export const cityWeatherQuery = () => {
 export const cityWeatherLoader = (queryClient) => async () => {
   return defer({
     cityWeatherPromise: queryClient.fetchQuery(cityWeatherQuery()),
+    cityTimeZonePromise: queryClient.fetchQuery(cityWeatherQuery()),
   });
 };

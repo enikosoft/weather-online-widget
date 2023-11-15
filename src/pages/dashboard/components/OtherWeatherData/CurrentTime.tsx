@@ -1,11 +1,11 @@
 import {useEffect, useState} from 'react';
-import dayjs from 'dayjs';
-import {useCityStore} from 'state/city';
-import {BackgroundImage, TimeWrapper} from './styles';
-import {City} from 'types/city';
-import utc from 'dayjs/plugin/utc';
+import {DateTime} from 'luxon'
 
-dayjs.extend(utc);
+import {useCityStore} from 'state/city';
+import {City} from 'types/city';
+
+import {BackgroundImage, TimeWrapper} from './styles';
+
 interface Props {
   compact?: boolean;
   cityPhotos?: string[];
@@ -14,17 +14,20 @@ interface Props {
 
 export const CurrentTime = (props: Props) => {
   const {cityPhotos, compact} = props;
-  const [dateState, setDateState] = useState('');
 
   const [contextCity] = useCityStore((state) => [state.cityInContext]);
-
   const city = props.city || contextCity;
-  if (!city?.utcOffset) {
-    return <div></div>;
-  }
+
+  const currentTime = DateTime.now().setZone(city?.timezone?.timeZoneId);
+  const formattedTime = currentTime.toFormat("HH:mm:ss a");
+  const [time, setTime] = useState(formattedTime);
 
   useEffect(() => {
-    const timer = setInterval(() => setDateState(dayjs().utcOffset(city.utcOffset).format('HH:mm:ss A')), 1000);
+    const timer = setInterval(() => {
+      const currentTime = DateTime.now().setZone(city?.timezone?.timeZoneId);
+      const formattedTime = currentTime.toFormat("HH:mm:ss a");
+      setTime(formattedTime);
+    }, 1000);
     return () => {
       clearInterval(timer);
     };
@@ -34,8 +37,12 @@ export const CurrentTime = (props: Props) => {
     <TimeWrapper>
       {cityPhotos && <BackgroundImage src={cityPhotos[0]} />}
       <div className="city-time">
-        <div className="timer">{dateState}</div>
-        {city?.timezone && !compact && <span className="timezone">{city?.timezone}</span>}
+        <div className="timer">{time}</div>
+        {city?.timezone && !compact && <div className='timezone'>
+          <span className="timezone__id">{city?.timezone?.timeZoneId}</span>
+          <span className="timezone__gmt">{city?.timezone?.gmt}</span>
+          <div className="timezone__name">({city?.timezone?.timeZoneName})</div>
+        </div>}
       </div>
     </TimeWrapper>
   );

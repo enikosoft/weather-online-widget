@@ -17,7 +17,7 @@ export const FavoriteLayout = (props: Props) => {
 
   const onClick = (city: City) => () => {
     setCity(city);
-    navigate('/app/dashboard', {state: {city}});
+    navigate('/app/dashboard');
   };
 
   return (

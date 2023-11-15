@@ -10,12 +10,14 @@ import {GOOGLE_API_KEY} from 'config/api';
 import {useJsApiLoader} from '@react-google-maps/api';
 import {useCityStore} from 'state/city';
 
+const libraries: ("drawing" | "geometry" | "localContext" | "places" | "visualization")[] = ['places']
+
 export const SearchPage = () => {
   const navigate = useNavigate();
   const setCity = useCityStore((state) => state.add);
 
   const {isLoaded} = useJsApiLoader({
-    libraries: ['places'],
+    libraries,
     language: 'en',
     preventGoogleFontsLoading: true,
     googleMapsApiKey: GOOGLE_API_KEY,
@@ -39,7 +41,7 @@ export const SearchPage = () => {
             fields: ['place_id', 'geometry', 'address_components', 'photos'],
           });
 
-          const city = mapDataToCity(details);
+          const city = await mapDataToCity(details);
 
           if (city) {
             setCity(city);

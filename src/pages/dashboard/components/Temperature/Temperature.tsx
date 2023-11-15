@@ -1,6 +1,8 @@
 import {Col, Row} from 'antd';
-import {WeatherConditionIcon} from 'components/icons';
-import moment from 'moment';
+import {DateTime} from 'luxon';
+
+import {ConditionIcon} from 'components/lib';
+
 import {Wrapper} from './styles';
 
 interface Props {
@@ -14,9 +16,13 @@ interface Props {
 export const Temperature = (props: Props) => {
   const {temperature, conditions, icon, description, dataUpdatedAt} = props;
 
-  const lastUpdatedTime = moment(dataUpdatedAt).format('h:mm A');
-  const lastUpdatedDate = moment(dataUpdatedAt).format('DD MMM, YYYY');
+  const currentTime = DateTime.fromJSDate(new Date(dataUpdatedAt)); 
+  
+  const lastUpdatedTime = currentTime.toFormat('h:mm a');
+  const lastUpdatedDate = currentTime.toFormat('dd LLL, yyyy');
 
+  console.log('item', conditions, icon)
+  temperature
   return (
     <Wrapper>
       <Row>
@@ -26,10 +32,11 @@ export const Temperature = (props: Props) => {
           <div className="description">{description}</div>
         </Col>
         <Col>
-          <WeatherConditionIcon height={150} width={200} className="condition_icon" condition={icon} />
+          <ConditionIcon height={200} width={200} className="condition_icon" condition={icon} />
         </Col>
       </Row>
       <Row className="updatedAt">
+        <div>Last update: </div>
         <div className="updatedAt-date">{lastUpdatedDate}</div>
         <div className="updatedAt-time">{lastUpdatedTime}</div>
       </Row>

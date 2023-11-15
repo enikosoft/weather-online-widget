@@ -1,6 +1,6 @@
 import {Layout} from 'antd';
 import {Content} from 'antd/es/layout/layout';
-import {Outlet} from 'react-router-dom';
+import {Outlet, useNavigate} from 'react-router-dom';
 import Header from './Header/Header';
 import {ApplicationLayout} from './Layout';
 import Nav from './Nav/Nav';
@@ -15,7 +15,12 @@ interface Props extends RouterProps {
 const Application = ({switchThema}: Props) => {
   const [city, setCity] = useCityStore((state) => [state.cityInContext, state.add]);
 
-  const selectCity = (value: City) => setCity(value);
+  const navigate = useNavigate()
+
+  const selectCity = (value: City) => {
+    setCity(value);
+    navigate('/app/dashboard');
+  }
 
   return (
     <>

@@ -60,6 +60,15 @@ export const TimeWrapper = styled.div`
       font-family: ${(props) => themeStyles[props.theme.mode].fontBoldFamily};
       font-size: 20px;
       padding-top: 20px;
+
+      &__id {
+        margin-right: 20px
+      }
+
+      &__name {
+        padding-top: 5px;
+        font-family: ${(props) => themeStyles[props.theme.mode].fontFamily};
+      }
     }
   }
 `;

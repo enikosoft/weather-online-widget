@@ -1,6 +1,6 @@
 import {Col, Row} from 'antd';
-import {WeatherConditionIcon} from 'components/icons';
 import {P} from 'components/layout';
+import {ConditionIcon} from 'components/lib';
 import {Forecast} from 'types/weather';
 import {Item} from './styles';
 
@@ -9,11 +9,12 @@ interface Props {
 }
 export const ForecastItem = (props: Props) => {
   const {item} = props;
+
   return (
     <Item>
       <Row justify="space-between" className="forecast">
         <Col span={4} className="forecast-icon">
-          <WeatherConditionIcon height={40} width={40} className="condition_icon" condition={item.conditionIcon} />
+          <ConditionIcon height={40} width={40} className="condition_icon" condition={item.conditionIcon} />
         </Col>
         <Col span={6} className="forecast-temperature">
           {item.maxTemp}°C/<P>{item.minTemp}</P>

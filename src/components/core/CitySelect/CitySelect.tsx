@@ -4,6 +4,8 @@ import {mapDataToCity, mapDataToOptions} from 'utils/citiesUtils';
 import ReactSearchAutocomplete from 'components/controls/Select/ReactSearchAutocomplete';
 import {DefaultSelectTheme} from 'components/controls/Select/styles';
 import usePlacesAutocomplete, {getDetails} from 'use-places-autocomplete';
+import {GOOGLE_API_KEY} from 'config/api';
+import { getTimeZoneId } from 'api/timezone';
 
 interface Props {
   large?: boolean;
@@ -34,7 +36,7 @@ export const CitySelect = (props: Props) => {
   const getCityDetails = useCallback(async (placeId: string) => {
     const parameter = {
       placeId,
-      fields: ['place_id', 'geometry', 'address_components', 'photos', 'utc_offset_minutes'],
+      fields: ['place_id', 'geometry', 'address_components', 'photos', 'utc_offset_minutes', 'timezone'],
     };
 
     return getDetails(parameter);
@@ -47,7 +49,17 @@ export const CitySelect = (props: Props) => {
   const handleSelect = async (option) => {
     try {
       const details = await getCityDetails(option.key);
-      const city = mapDataToCity(details);
+
+      // const {geometry} = details;
+
+      // // if lat or lng are undefined -> fetch weather by city name
+      // const lat = geometry?.location?.lat() || 0;
+      // const lng = geometry?.location?.lng() || 0;
+
+      // const tt = await getTimeZoneId(lat, lng)
+
+      // console.log('TT', tt)
+      const city = await mapDataToCity(details);
 
       if (city) {
         onSelect(city);

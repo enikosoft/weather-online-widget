@@ -1,8 +1,12 @@
+import {useCallback} from 'react';
 import {Col, Row} from 'antd';
-import {LikeIcon, WeatherConditionIcon} from 'components/icons';
-import {CurrentTime} from 'pages/dashboard';
+
 import {useFavoritesStore} from 'state';
+import {CurrentTime} from 'pages/dashboard';
 import {FavoriteCity} from 'types/city';
+
+import {ConditionIcon, LikeIcon} from 'components/lib';
+
 import {StyledFavoriteCard} from './styles';
 
 interface Props {
@@ -13,12 +17,9 @@ export const FavoriteCard = (props: Props) => {
   const {city} = props;
   const {photos, name, countryName} = city;
 
-  const [isLiked, toggle] = useFavoritesStore((state) => [state.isLiked(city.id), state.toggle]);
+  const [isLiked, toggleFavorite] = useFavoritesStore((state) => [state.isLiked(city.id), state.toggle]);
 
-  const onClick = (e) => {
-    e.stopPropagation();
-    toggle(city);
-  };
+  const handleToggleFavorite = useCallback(() => toggleFavorite(city), []);
 
   return (
     <StyledFavoriteCard>
@@ -30,13 +31,13 @@ export const FavoriteCard = (props: Props) => {
           <span>
             {name}, {countryName}
           </span>
-          <LikeIcon liked={isLiked} onClick={onClick} />
+          <LikeIcon isLiked={isLiked} onClick={handleToggleFavorite} />
         </div>
         <div className="weather">
           <Row justify="space-between" className="forecast">
             {city.conditionIcon && (
               <Col span={6} className="forecast-icon">
-                <WeatherConditionIcon condition={city.conditionIcon} width={65} height={45} />
+                <ConditionIcon condition={city.conditionIcon} width={65} height={45} />
               </Col>
             )}
             <Col span={8} className="forecast-temperature">

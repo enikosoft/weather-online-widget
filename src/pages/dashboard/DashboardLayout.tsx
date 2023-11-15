@@ -39,7 +39,7 @@ export const DashboardLayout = (props: Props) => {
     feelslike,
   } = weather;
 
-  const {photos} = city;
+  const {photos, timezone} = city;
 
   return (
     <>
@@ -69,7 +69,7 @@ export const DashboardLayout = (props: Props) => {
             </Col>
             <Col span={8} xl={8} xs={8} style={{padding: '20px 0 16px 20px'}}>
               <Card titleSize={16} title="Sunrise & Sunset" padding={24}>
-                <SunSet sunsetUnix={sunsetEpoch} sunriseUnix={sunriseEpoch} size={150} sunIconSize={25} />
+                <SunSet timeZoneId={timezone.timeZoneId} sunsetUnix={sunsetEpoch} sunriseUnix={sunriseEpoch} size={150} sunIconSize={25} />
               </Card>
             </Col>
           </Row>

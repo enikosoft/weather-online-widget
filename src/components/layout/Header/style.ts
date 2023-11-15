@@ -24,9 +24,6 @@ export const CityTitleStyled = styled.div`
   display: flex;
   align-items: center;
   padding: 0 55px 0 0;
-  > .like-icon {
-    margin-left: 30px;
-  }
 `;
 
 export const HeaderText = styled.p`

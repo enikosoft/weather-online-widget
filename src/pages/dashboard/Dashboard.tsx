@@ -12,7 +12,7 @@ export const Dashboard = () => {
 
   const [city] = useCityStore((state) => [state.cityInContext]);
 
-  const {cityWeatherPromise} = useLoaderData() as CityWeatherLoader;
+  const {cityWeatherPromise, cityTimeZonePromise} = useLoaderData() as CityWeatherLoader;
 
   useEffect(() => {
     if (!city) {
@@ -22,7 +22,7 @@ export const Dashboard = () => {
 
   return city ? (
     <Suspense fallback={<LoaderIndicatorWinter />}>
-      <Await resolve={cityWeatherPromise} errorElement={<div>Oops!</div>}>
+      <Await resolve={[cityWeatherPromise, cityTimeZonePromise]} errorElement={<div>Oops!</div>}>
         {() => {
           const {dataUpdatedAt, data, isLoading} = useQuery(cityWeatherQuery());
           const result = data && mapApiWeatherDataToValues(data?.data);

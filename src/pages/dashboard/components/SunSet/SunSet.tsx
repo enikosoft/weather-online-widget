@@ -1,28 +1,39 @@
 import {useEffect, useRef, useState} from 'react';
-import moment from 'moment-timezone';
 import {ThemeProvider} from 'styled-components';
+import { DateTime } from 'luxon';
 
 import {DEFAULT_YELLOW, Wrapper} from './styles';
 import {SunIcon2, SunRiseIcon, SunSetIcon} from 'components/icons';
 
 interface Props {
+  timeZoneId?: string;
   sunriseUnix: number;
   sunsetUnix: number;
   size: number;
   sunIconSize?: number;
 }
 
+/**
+ * 
+ * @param props
+ * `timeZoneId` - If you provide a timeZoneId, the time will be displayed in that zone.
+ * If you don't provide one, then it will be in your zone.
+ *  
+ * @returns 
+ */
 export const SunSet = (props: Props) => {
-  const {size, sunIconSize = 16, sunriseUnix, sunsetUnix} = props;
+  const {timeZoneId, size, sunIconSize = 16, sunriseUnix, sunsetUnix} = props;
 
-  const nowUnix = moment().utc().unix();
-
-  if (!moment.unix(sunriseUnix).isValid || !moment.unix(sunsetUnix).isValid) {
+  const nowUnix = DateTime.now().setZone(timeZoneId).toUTC().toSeconds();
+  const sunriseDateTime = DateTime.fromSeconds(sunriseUnix).setZone(timeZoneId);
+  const sunsetDateTime = DateTime.fromSeconds(sunsetUnix).setZone(timeZoneId);
+  
+  if (!sunriseDateTime.isValid || !sunsetDateTime.isValid) {
     throw new Error('Unix time props is invalid.');
   }
-
-  const sunrise = moment.unix(sunriseUnix).format('HH:mm A');
-  const sunset = moment.unix(sunsetUnix).format('HH:mm A');
+  
+  const sunrise = sunriseDateTime.toFormat('HH:mm a');
+  const sunset = sunsetDateTime.toFormat('HH:mm a');
 
   const leftPos = ((nowUnix - sunriseUnix) * 180) / (sunsetUnix - sunriseUnix);
 
@@ -42,10 +53,11 @@ export const SunSet = (props: Props) => {
   let sunAnimationValue = sunRect.sunIconLeft - sunRect.sunZoneLeft;
 
   // if now is not a sun day
-  if (moment().isAfter(moment.unix(sunsetUnix)) || moment.unix(sunriseUnix).isAfter(moment())) {
+  const now = DateTime.utc();
+  if (now > DateTime.fromSeconds(sunsetUnix) || DateTime.fromSeconds(sunriseUnix) > now) {
     sunAnimationValue = 0;
   }
-
+  
   const theme = {
     width: `${size}px`,
     height: `${size}px`,
