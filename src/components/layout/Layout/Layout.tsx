@@ -16,21 +16,6 @@ export const ApplicationLayout = styled(Layout)`
   }
 `;
 
-export const CenteredWrapper = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  flex-direction: column;
-  width: 1216px;
-  height: 520px;
-
-  > div {
-    max-width: inherit;
-  }
-`;
-
 export const P = styled.p`
   font-family: ${(props) => themeStyles[props.theme.mode].fontFamily};
   color: ${(props) => themeStyles[props.theme.mode].infoText};

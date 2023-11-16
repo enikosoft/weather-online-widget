@@ -1,15 +1,15 @@
 import {Row} from 'antd';
 import styled from 'styled-components';
-import {size} from 'styles/GlobalStyle';
+import {mediaBreakpoints} from 'styles';
 
 export const MainRow = styled(Row)`
   min-height: 350px;
 
-  @media ${size.sm} {
+  @media ${mediaBreakpoints.sm} {
     flex-direction: column;
   }
 
-  @media ${size.xl} {
+  @media ${mediaBreakpoints.xl} {
     flex-direction: row;
   }
 `;

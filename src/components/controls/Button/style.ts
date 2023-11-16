@@ -46,6 +46,14 @@ export const Btn = styled(Button)`
       return '390px';
     }};
     border-radius: 30px;
+    border: ${({theme}) => {
+     
+      if (theme.secondary) {
+        return '2px solid #FFFFFF';
+      }
+      return 'none';
+    }};
+
     background: ${({theme}) => {
       if (theme.primary && theme.disabled) {
         return '#EDEDED';
@@ -57,7 +65,7 @@ export const Btn = styled(Button)`
         return 'var(--primary-blue)';
       }
       if (theme.secondary) {
-        return '#FFFFFF';
+        return 'rgba(0, 0, 0, 0.2)';
       }
       return 'var(--primary-blue)';
     }};
@@ -66,7 +74,18 @@ export const Btn = styled(Button)`
     font-size: 18px;
     line-height: 27px;
     padding: 0px 35px 4px 35px;
-    border: none;
+    //border: none;
     color: var(--white);
+
+    display: flex;
+    align-items: center;
+
+    .button-icon {
+      display: flex;
+      align-items: end;
+      margin-right: 5px;
+      height: 25px;
+      font-size: 20px;
+    }
   }
 `;

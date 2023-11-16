@@ -16,13 +16,10 @@ export const GlobalStyle = createGlobalStyle`
   }
 `;
 
-export const size = {
-  // mobileS: '320px',
-  // mobileM: '375px',
-  // mobileL: '425px',
-  // tablet: '768px',
-  // laptop: '1024px',
-
-  sm: `(min-width: 576px)`,
-  xl: `(min-width: 1200px)`,
+export const mediaBreakpoints = {
+  xs: 576,
+  sm: 576,
+  md: 768,
+  lg: 992,
+  xl: 1200
 };

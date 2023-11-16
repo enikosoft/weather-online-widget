@@ -1,14 +1,22 @@
 import {getDetails, getGeocode} from 'use-places-autocomplete';
 import {useNavigate} from 'react-router-dom';
-import {SearchPageLayout} from './style';
+import { useMediaQuery } from 'react-responsive'
+import {useJsApiLoader} from '@react-google-maps/api';
+
 import {Button} from 'components/controls';
-import {CenteredWrapper, H} from 'components/layout';
+import {H} from 'components/layout';
 import {CitySelect} from 'components/core/CitySelect';
 import {City} from 'types/city';
 import {mapDataToCity} from 'utils/citiesUtils';
 import {GOOGLE_API_KEY} from 'config/api';
-import {useJsApiLoader} from '@react-google-maps/api';
 import {useCityStore} from 'state/city';
+import { mediaBreakpoints } from 'styles';
+
+import { BiLogIn } from "react-icons/bi";
+import { FiUserPlus } from "react-icons/fi";
+import { MdMyLocation } from "react-icons/md";
+
+import {SearchPageLayout, CenteredWrapper} from './style';
 
 const libraries: ("drawing" | "geometry" | "localContext" | "places" | "visualization")[] = ['places']
 
@@ -59,23 +67,88 @@ export const SearchPage = () => {
     navigate('/app/dashboard');
   };
 
+  const mobileAndTablet = useMediaQuery({
+    query: `(max-width: ${mediaBreakpoints.md}px)`
+  })
+
+  const styling = {
+    height: mobileAndTablet ? '50px' : '80px',
+    maxWidth: '90%',
+    borderRadius: '30px',
+    backgroundColor: 'white',
+    hoverBackgroundColor: '#eee',
+    fontSize: mobileAndTablet ? '12px' : '16px',
+    fontFamily: 'var(--primaryFontFamily)',
+    placeholderColor: 'grey',
+    zIndex: 0,
+  }
+
   return (
     <SearchPageLayout>
-      <div style={{justifyContent: 'flex-end', display: 'inherit'}}>
-        <Button medium primary widthContent onClick={handleDetectLocation}>
-          Determine my location
-        </Button>
+      <div className='nav-block'>
+        <div className='account-block'>
+          <Button 
+            icon={<BiLogIn />}
+            medium
+            secondary
+            widthContent
+            label='Login'
+          />
+          <Button 
+            icon={<FiUserPlus />}
+            medium
+            secondary
+            widthContent
+            label='Register'
+          />
+        </div>
+
+        {
+          !mobileAndTablet && <div className='determine-location'>
+            <Button
+              icon={<MdMyLocation />}
+              medium
+              primary
+              widthContent
+              onClick={handleDetectLocation}
+              label='Determine my location'
+            />
+          </div>
+        }
       </div>
+     
 
       <CenteredWrapper>
-        <H level={5} bold>
-          Forecast
+        <H className='app-name' level={1} bold >UrbanClimaClock</H>
+        <H className='app-name-subtitle' level={2} secondary>
+          Embark on a journey through urban life, where time and weather unfold harmoniously!
+          Find a settlement or determine your location.
         </H>
-        <H level={1} isSubtitle>
-          Find a settlement or determine your location by clicking the button at the top right!
-        </H>
-
-        <div style={{marginTop: '60px'}}>{isLoaded && <CitySelect large onSelect={handleSelect} />}</div>
+    
+        {
+          mobileAndTablet && <div className='determine-location' >
+            <Button
+              icon={<MdMyLocation />}
+              medium
+              primary
+              widthContent
+              onClick={handleDetectLocation}
+              label='Determine my location'
+            />
+          </div>
+        }
+        
+        <div style={{marginTop: '60px'}}>
+          {isLoaded &&
+            <CitySelect
+              showInputSearchIcon={!mobileAndTablet}
+              styling={styling}
+              mobileAndTablet
+              large
+              onSelect={handleSelect}
+              />
+          }
+        </div>
       </CenteredWrapper>
     </SearchPageLayout>
   );

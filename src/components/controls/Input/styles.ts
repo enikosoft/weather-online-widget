@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import {mediaBreakpoints} from 'styles';
 
 export const SuffixWrapper = styled.div`
   flex-direction: column;
@@ -38,6 +39,11 @@ export const StyledSearchInput = styled.div`
 
     return '0 10px 0 25px';
   }};
+
+  @media screen and (max-width: ${mediaBreakpoints.md}px) {
+    padding: 0 8px 0 25px;
+  }
+
 
   font-family: inherit;
   font-size: ${(props) => {

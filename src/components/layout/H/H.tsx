@@ -1,25 +1,26 @@
-import React, {ReactNode} from 'react';
+import {ReactNode} from 'react';
+
 import {ThemeProvider} from 'styled-components';
-import {DefaultHTheme, defaultHTheme, Title} from './style';
+import {TitleProps as AntdTitleProps} from 'antd/es/typography/Title';
 
-type HLevel = 1 | 2 | 3 | 4 | 5;
+import {DefaultTitleTheme, defaultTitleTheme, Title} from './style';
 
-export interface HProps {
-  children: ReactNode;
-  level: HLevel;
+export interface TitleProps extends AntdTitleProps {
+  className?: string
   bold?: boolean;
-  isSubtitle?: boolean;
-  styling?: DefaultHTheme;
+  secondary?: boolean;
+  styling?: DefaultTitleTheme;
+  children: ReactNode;
 }
 
-export const H = (props: HProps) => {
-  const {children, level = 1, bold, isSubtitle} = props;
+export const H = (props: TitleProps) => {
+  const {className, children, level = 1, bold, secondary} = props;
 
-  const theme = {...defaultHTheme};
+  const theme = {...defaultTitleTheme};
 
   return (
     <ThemeProvider theme={theme}>
-      <Title level={level} bold={bold} isSubtitle={isSubtitle}>
+      <Title className={className} level={level} $secondary={secondary} $bold={bold}>
         {children}
       </Title>
     </ThemeProvider>

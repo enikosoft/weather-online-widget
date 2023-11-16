@@ -4,7 +4,7 @@ import {CitySelectWrapper, StyledHeader} from './style';
 import {City} from 'types/city';
 import {useJsApiLoader} from '@react-google-maps/api';
 import {GOOGLE_API_KEY} from 'config/api';
-import { useLocation, useNavigation } from 'react-router-dom';
+import {useLocation} from 'react-router-dom';
 
 const libraries: ("drawing" | "geometry" | "localContext" | "places" | "visualization")[] = ['places']
 

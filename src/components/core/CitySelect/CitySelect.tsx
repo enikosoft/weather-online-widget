@@ -4,10 +4,10 @@ import {mapDataToCity, mapDataToOptions} from 'utils/citiesUtils';
 import ReactSearchAutocomplete from 'components/controls/Select/ReactSearchAutocomplete';
 import {DefaultSelectTheme} from 'components/controls/Select/styles';
 import usePlacesAutocomplete, {getDetails} from 'use-places-autocomplete';
-import {GOOGLE_API_KEY} from 'config/api';
-import { getTimeZoneId } from 'api/timezone';
 
 interface Props {
+  mobileAndTablet?: boolean
+  showInputSearchIcon?: boolean
   large?: boolean;
   medium?: boolean;
   styling?: DefaultSelectTheme;
@@ -15,7 +15,7 @@ interface Props {
 }
 
 export const CitySelect = (props: Props) => {
-  const {large, medium, onSelect, styling} = props;
+  const {large, medium, onSelect, styling, showInputSearchIcon} = props;
 
   const {
     ready,
@@ -50,15 +50,6 @@ export const CitySelect = (props: Props) => {
     try {
       const details = await getCityDetails(option.key);
 
-      // const {geometry} = details;
-
-      // // if lat or lng are undefined -> fetch weather by city name
-      // const lat = geometry?.location?.lat() || 0;
-      // const lng = geometry?.location?.lng() || 0;
-
-      // const tt = await getTimeZoneId(lat, lng)
-
-      // console.log('TT', tt)
       const city = await mapDataToCity(details);
 
       if (city) {
@@ -90,6 +81,7 @@ export const CitySelect = (props: Props) => {
       inputSearchString={value}
       isLoading={!ready}
       showNoResults={showNoResults}
+      showIcon={showInputSearchIcon}
     />
   );
 };

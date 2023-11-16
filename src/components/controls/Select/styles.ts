@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {ThemeContext, themeStyles} from 'styles';
+import {mediaBreakpoints, ThemeContext, themeStyles} from 'styles';
 
 export interface DefaultSelectTheme {
   height?: string;
@@ -69,7 +69,7 @@ export const StyledResults = styled.div`
   > ul {
     list-style-type: none;
     margin: 0;
-    padding: 0px 0 16px 0;
+    padding: 0 0 16px 0;
 
     ::-webkit-scrollbar {
       width: 6px;
@@ -88,5 +88,11 @@ export const StyledResults = styled.div`
     }};
     max-height: 200px;
     overflow: scroll;
+
+    > li {
+      @media screen and (max-width: ${mediaBreakpoints.md}px) {
+        padding-left: 24px;
+      }
+    }
   }
 `;
