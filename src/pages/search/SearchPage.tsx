@@ -1,6 +1,6 @@
 import {getDetails, getGeocode} from 'use-places-autocomplete';
 import {useNavigate} from 'react-router-dom';
-import { useMediaQuery } from 'react-responsive'
+import {useMediaQuery} from 'react-responsive'
 import {useJsApiLoader} from '@react-google-maps/api';
 
 import {Button} from 'components/controls';

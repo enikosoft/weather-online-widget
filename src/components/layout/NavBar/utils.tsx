@@ -1,6 +1,7 @@
+import {Link} from 'react-router-dom';
+
 import {HeartOutlined, HomeOutlined} from '@ant-design/icons';
 import {MenuProps} from 'antd';
-import {Link} from 'react-router-dom';
 
 type MenuItem = Required<MenuProps>['items'][number];
 

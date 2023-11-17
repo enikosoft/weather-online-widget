@@ -3,10 +3,10 @@ import {Content} from 'antd/es/layout/layout';
 import {Outlet, useNavigate} from 'react-router-dom';
 import Header from './Header/Header';
 import {ApplicationLayout} from './Layout';
-import Nav from './Nav/Nav';
 import {withRouter, RouterProps} from 'hoc';
 import {City} from 'types/city';
 import {useCityStore} from 'state/city';
+import Nav from './NavBar/Nav';
 
 interface Props extends RouterProps {
   switchThema(): void;
@@ -25,7 +25,9 @@ const Application = ({switchThema}: Props) => {
   return (
     <>
       <ApplicationLayout>
-        <Nav />
+       
+      <Nav />
+
         <Layout className="site-layout">
           <Header city={city} selectCity={selectCity} switchThema={switchThema} />
           <Content>
