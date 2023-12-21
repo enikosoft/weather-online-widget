@@ -26,11 +26,11 @@ const Application = ({switchThema}: Props) => {
     <>
       <ApplicationLayout>
        
-      <Nav />
+      <Nav switchThema={switchThema} />
 
         <Layout className="site-layout">
           <Header city={city} selectCity={selectCity} switchThema={switchThema} />
-          <Content>
+          <Content className='app-content'>
             <Outlet context={{city, setCity}} />
           </Content>
         </Layout>

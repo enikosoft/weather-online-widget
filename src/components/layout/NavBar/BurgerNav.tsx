@@ -1,10 +1,15 @@
 
 import {items} from './utils';
 import {StyledBurgerNavMenu, StyledNavSider, StyledNav} from './styles';
+import { ToggleThemeButton } from 'components/lib';
 
-const BurgerNav = ({open, selectedMenu, ...props}) => {
+const BurgerNav = ({switchThema, open, selectedMenu, ...props}) => {
   return (
     <StyledBurgerNavMenu $open={open} aria-hidden={!open} {...props}>
+      <div className='nav-toggle-theme'>
+        <ToggleThemeButton switchThema={switchThema} />
+      </div>
+
       <StyledNavSider $isBurger width={300}>
         <StyledNav
           $isBurger

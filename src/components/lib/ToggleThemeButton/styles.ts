@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {ThemeContext, themeStyles} from 'styles';
+import {mediaBreakpoints, ThemeContext, themeStyles} from 'styles';
 
 export const Button = styled.div`
   width: 50%;
@@ -46,6 +46,7 @@ export const Button = styled.div`
     cursor: pointer;
   }
 `;
+
 export const StyledThemeButtonContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -56,7 +57,12 @@ export const StyledThemeButtonContainer = styled.div`
     align-items: center;
     padding: 9px;
     position: relative;
+
     width: 296px;
+    @media screen and (max-width: ${mediaBreakpoints.lg}px) {
+      width: 120px;
+    }
+
     height: 50px;
     background: #151515;
     background: ${(props) => themeStyles[props.theme.mode].themeBtnBg};

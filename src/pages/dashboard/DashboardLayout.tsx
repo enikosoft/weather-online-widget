@@ -43,8 +43,8 @@ export const DashboardLayout = (props: Props) => {
 
   return (
     <>
-      <MainRow>
-        <Col span={8} xl={8} xs={24} style={{padding: '20px 20px 0 0'}}>
+      <MainRow className='AA'>
+        <Col className='temperature-block' span={8} xl={8} xs={20} md={24} sm={24} style={{padding: '20px 20px 0 0'}}>
           <Card padding={40}>
             <Temperature
               temperature={temperature}
@@ -55,36 +55,36 @@ export const DashboardLayout = (props: Props) => {
             />
           </Card>
         </Col>
-        <Col span={24} xl={16} xs={24}>
-          <Row style={{minHeight: '70%'}}>
-            <Col span={8} xl={8} xs={8} style={{padding: '20px 0 16px 20px'}}>
+        <Col className='weather-widgets-block' span={24} xl={16} xs={20} md={24} sm={24}>
+          <Row className='weather-widgets-block-1'>
+            <Col span={8} xl={8} xs={24} md={8} sm={24}>
               <Card titleSize={16} title="Wind Status" padding={24}>
                 <Wind windSpeed={windspeed} windDir={winddir} />
               </Card>
             </Col>
-            <Col span={8} xl={8} xs={8} style={{padding: '20px 0 16px 20px'}}>
+            <Col span={8} xl={8} xs={24} md={8} sm={24}>
               <Card titleSize={16} title="UV Index" padding={24}>
                 <UVIndex uvIndex={uvindex} />
               </Card>
             </Col>
-            <Col span={8} xl={8} xs={8} style={{padding: '20px 0 16px 20px'}}>
+            <Col span={8} xl={8} xs={24} md={8} sm={24}>
               <Card titleSize={16} title="Sunrise & Sunset" padding={24}>
                 <SunSet timeZoneId={timezone.timeZoneId} sunsetUnix={sunsetEpoch} sunriseUnix={sunriseEpoch} size={150} sunIconSize={25} />
               </Card>
             </Col>
           </Row>
-          <Row style={{minHeight: '30%'}}>
-            <Col span={8} xl={8} xs={8} style={{padding: '0 0 0 20px'}}>
+          <Row className='weather-widgets-block-2'>
+            <Col span={8} xl={8} xs={24} md={8} sm={24}>
               <Card titleSize={14} title="Humidity" padding={16} height={100}>
                 <Humidity humidity={humidity} dew={dew} />
               </Card>
             </Col>
-            <Col span={8} xl={8} xs={8} style={{padding: '0 0 0 20px'}}>
+            <Col span={8} xl={8} xs={24} md={8} sm={24}>
               <Card titleSize={14} title="Visibility" padding={16} height={100}>
                 <Visibility visibility={visibility} />
               </Card>
             </Col>
-            <Col span={8} xl={8} xs={8} style={{padding: '0 0 0 20px'}}>
+            <Col span={8} xl={8} xs={24} md={8} sm={24}>
               <Card titleSize={14} title="Feels Like" padding={16} height={100}>
                 <FeelsLikeTemperature feelsLike={feelslike} />
               </Card>
@@ -93,7 +93,7 @@ export const DashboardLayout = (props: Props) => {
         </Col>
       </MainRow>
 
-      <Row style={{minHeight: 'calc(100% - 350px)'}}>
+      {/* <Row style={{minHeight: 'calc(100% - 350px)'}}>
         <Col span={8} xl={8} md={12} xs={24} style={{padding: '40px 20px 0 0'}}>
           <Forecast forecast={forecast} />
         </Col>
@@ -102,7 +102,7 @@ export const DashboardLayout = (props: Props) => {
             <CurrentTime cityPhotos={photos} />
           </Card>
         </Col>
-      </Row>
+      </Row> */}
     </>
   );
 };

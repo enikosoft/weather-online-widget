@@ -58,6 +58,14 @@ export const StyledBurgerNavMenu = styled.nav<BurgerNav>`
   left: 0;
   transition: transform 0.3s ease-in-out;
   z-index: 10;
+
+  .nav-toggle-theme {
+    position: absolute;
+    z-index: 10;
+    position: absolute;
+    top: 45px;
+    left: 160px;
+  }
 `;
 
 export const StyledNavSider = styled(Sider)<BurgerNav>`

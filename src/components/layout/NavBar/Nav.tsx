@@ -15,7 +15,7 @@ import {items} from './utils';
 
 import {StyledNav, StyledNavSider} from './styles';
 
-const Nav = () => {
+const Nav = ({switchThema}) => {
   const mobileAndTablet = useMediaQuery({
     query: `(max-width: ${mediaBreakpoints.lg}px)`
   })
@@ -45,7 +45,7 @@ const Nav = () => {
           ? <div ref={ref}>
               <FocusLock disabled={!open}>
                 <BurgerButton open={open} setOpen={setOpen} aria-controls={menuId} />
-                <BurgerNav open={open} setOpen={setOpen} id={menuId} selectedMenu={selectedMenu} />
+                <BurgerNav switchThema={switchThema} open={open} setOpen={setOpen} id={menuId} selectedMenu={selectedMenu} />
               </FocusLock>
             </div>
           : <StyledNavSider

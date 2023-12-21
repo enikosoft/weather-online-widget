@@ -1,6 +1,6 @@
 import {Header} from 'antd/es/layout/layout';
 import styled from 'styled-components';
-import {themeStyles} from 'styles';
+import {mediaBreakpoints, themeStyles} from 'styles';
 
 export const StyledHeader = styled(Header)`
   &&& {
@@ -13,6 +13,21 @@ export const StyledHeader = styled(Header)`
     align-items: center;
     justify-content: space-between;
     padding: 0;
+
+    @media screen and (max-width: ${mediaBreakpoints.lg}px) {
+      padding-left: 24px;
+    }
+
+    @media screen and (max-width: ${mediaBreakpoints.lg}px) {
+      height: auto;
+      min-height: auto;
+      flex-direction: column-reverse;
+      padding-top: 8px;
+
+      > div {
+        width: 100%;
+      }
+    }
   }
 `;
 
