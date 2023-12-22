@@ -1,9 +1,9 @@
-import React, {ChangeEventHandler, FocusEvent, FocusEventHandler} from 'react';
+import {ChangeEventHandler, FocusEvent, FocusEventHandler} from 'react';
 
 import {SearchIcon} from 'components/icons';
-import {StyledSearchInput, SuffixWrapper} from './styles';
-import {ThemeContext, themeStyles} from 'styles';
 import {withTheme} from 'hoc';
+import {ThemeContext, themeStyles} from 'styles';
+import {StyledSearchInput, SuffixWrapper} from './styles';
 
 export interface SearchInputProps {
   theme: ThemeContext;

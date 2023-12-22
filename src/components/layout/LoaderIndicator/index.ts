@@ -1,2 +1,2 @@
-export * from './LoaderIndicatorWinter';
 export * from './LoaderIndicatorEarth';
+export * from './LoaderIndicatorWinter';

@@ -1,10 +1,10 @@
-import React, { ReactElement } from 'react';
-import {Btn} from './style';
-import {CSSObject, ThemeProvider} from 'styled-components';
 import {BaseButtonProps} from 'antd/es/button/button';
+import React, {ReactElement} from 'react';
+import {CSSObject, ThemeProvider} from 'styled-components';
+import {Btn} from './style';
 
 export interface ButtonProps extends BaseButtonProps {
-  icon?: ReactElement
+  icon?: ReactElement;
   children?: React.ReactNode;
   small?: boolean;
   medium?: boolean;
@@ -39,10 +39,10 @@ export const Button = (props: ButtonProps) => {
         // @ts-ignore defferenr types with btn from antd
         onClick={onClick}
         type={type || 'primary'}
-        className='button'
+        className="button"
       >
-        {icon && <div className='button-icon'>{icon}</div>}
-        {label && <div className='button-label'>{label || 'Click me'}</div>}
+        {icon && <div className="button-icon">{icon}</div>}
+        {label && <div className="button-label">{label || 'Click me'}</div>}
       </Btn>
     </ThemeProvider>
   );

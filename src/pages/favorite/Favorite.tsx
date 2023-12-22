@@ -1,10 +1,10 @@
 import {FavoriteLoader} from 'api/bulkWeather';
+import {LoaderIndicatorEarth} from 'components/layout';
 import {Suspense} from 'react';
 import {Await, useLoaderData} from 'react-router-dom';
+import {useFavoritesStore} from 'state';
 import {mapApiWeatherDataToFavoritesValues} from 'utils/weatherUtils';
 import {FavoriteLayout} from './FavoriteLayout';
-import {useFavoritesStore} from 'state';
-import {LoaderIndicatorEarth} from 'components/layout';
 
 export const Favorite = () => {
   const favorites = useFavoritesStore((state) => state.favorites);

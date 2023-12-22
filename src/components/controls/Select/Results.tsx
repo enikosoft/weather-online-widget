@@ -1,5 +1,5 @@
-import {Dispatch, ReactNode, SetStateAction} from 'react';
 import {Option, OptionItem} from 'components/controls/Option';
+import {Dispatch, ReactNode, SetStateAction} from 'react';
 import {StyledResults} from './styles';
 
 export interface ResultsProps {

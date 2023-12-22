@@ -1,5 +1,5 @@
-import styled from 'styled-components';
 import Lottie from 'lottie-react';
+import styled from 'styled-components';
 
 export const Button = styled.button`
   border: none;

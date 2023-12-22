@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {themeStyles} from 'styles';
+import {mediaBreakpoints, themeStyles} from 'styles';
 
 export const DashboardLittleComponent = styled.div`
   display: flex;
@@ -54,6 +54,14 @@ export const TimeWrapper = styled.div`
     .timer {
       font-family: ${(props) => themeStyles[props.theme.mode].fontBoldFamily};
       font-size: 120px;
+
+      @media screen and (max-width: ${mediaBreakpoints.sm}px) {
+        font-size: 56px;
+      }
+
+      @media screen and (min-width: ${mediaBreakpoints.xl}px) and (max-width: ${mediaBreakpoints.lg}px) {
+        font-size: 86px;
+      }
     }
 
     .timezone {
@@ -62,7 +70,7 @@ export const TimeWrapper = styled.div`
       padding-top: 20px;
 
       &__id {
-        margin-right: 20px
+        margin-right: 20px;
       }
 
       &__name {

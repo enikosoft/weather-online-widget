@@ -1,9 +1,9 @@
-import {ExtractFnReturnType} from 'providers';
-import {weatherServer} from './axios';
-import {useQuery} from 'react-query';
 import {WEATHER_API_KEY, WEATHER_API_URL} from 'config/api';
-import {City} from 'types/city';
+import {ExtractFnReturnType} from 'providers';
+import {useQuery} from 'react-query';
 import {defer} from 'react-router-dom';
+import {City} from 'types/city';
+import {weatherServer} from './axios';
 
 const apiParams = (locations: string) => {
   return {

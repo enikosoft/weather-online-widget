@@ -1,14 +1,14 @@
 import {createGlobalStyle} from 'styled-components';
 
-import NotoSansRegularWoff2 from 'assets/fonts/NotoSans/NotoSans-Regular.woff2';
 import NotoSansRegularEot from 'assets/fonts/NotoSans/NotoSans-Regular.eot';
-import NotoSansRegularWoff from 'assets/fonts/NotoSans/NotoSans-Regular.woff';
 import NotoSansRegularSvg from 'assets/fonts/NotoSans/NotoSans-Regular.svg';
+import NotoSansRegularWoff from 'assets/fonts/NotoSans/NotoSans-Regular.woff';
+import NotoSansRegularWoff2 from 'assets/fonts/NotoSans/NotoSans-Regular.woff2';
 
-import NotoSansBoldWoff2 from 'assets/fonts/NotoSans/NotoSans-Bold.woff2';
 import NotoSansBoldEot from 'assets/fonts/NotoSans/NotoSans-Bold.eot';
-import NotoSansBoldWoff from 'assets/fonts/NotoSans/NotoSans-Bold.woff';
 import NotoSansBoldSvg from 'assets/fonts/NotoSans/NotoSans-Bold.svg';
+import NotoSansBoldWoff from 'assets/fonts/NotoSans/NotoSans-Bold.woff';
+import NotoSansBoldWoff2 from 'assets/fonts/NotoSans/NotoSans-Bold.woff2';
 
 export const FontsStyle = createGlobalStyle`
   @font-face {

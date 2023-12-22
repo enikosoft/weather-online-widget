@@ -1,8 +1,8 @@
+import {CityWeatherLoader, cityWeatherQuery} from 'api/weather';
+import {LoaderIndicatorWinter} from 'components/layout';
 import {Suspense, useEffect} from 'react';
 import {useQuery} from 'react-query';
 import {Await, useLoaderData, useNavigate} from 'react-router-dom';
-import {CityWeatherLoader, cityWeatherQuery} from 'api/weather';
-import {LoaderIndicatorWinter} from 'components/layout';
 import {useCityStore} from 'state/city';
 import {mapApiWeatherDataToValues} from 'utils/weatherUtils';
 import {DashboardLayout} from './DashboardLayout';

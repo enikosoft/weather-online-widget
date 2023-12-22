@@ -1,5 +1,5 @@
-import styled from 'styled-components';
 import Lottie from 'lottie-react';
+import styled from 'styled-components';
 
 import {IconBaseProps} from 'components/icons/type';
 import {useAnimationData, WeatherConditionAnimationPath} from './useAnimationData';
@@ -7,7 +7,6 @@ import {useAnimationData, WeatherConditionAnimationPath} from './useAnimationDat
 interface Props extends IconBaseProps {
   condition: string;
 }
-
 
 export const Icon = styled.div`
   display: flex;

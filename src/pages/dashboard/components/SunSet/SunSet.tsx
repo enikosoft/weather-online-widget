@@ -1,9 +1,9 @@
+import {DateTime} from 'luxon';
 import {useEffect, useRef, useState} from 'react';
 import {ThemeProvider} from 'styled-components';
-import { DateTime } from 'luxon';
 
-import {DEFAULT_YELLOW, Wrapper} from './styles';
 import {SunIcon2, SunRiseIcon, SunSetIcon} from 'components/icons';
+import {DEFAULT_YELLOW, Wrapper} from './styles';
 
 interface Props {
   timeZoneId?: string;
@@ -14,12 +14,12 @@ interface Props {
 }
 
 /**
- * 
+ *
  * @param props
  * `timeZoneId` - If you provide a timeZoneId, the time will be displayed in that zone.
  * If you don't provide one, then it will be in your zone.
- *  
- * @returns 
+ *
+ * @returns
  */
 export const SunSet = (props: Props) => {
   const {timeZoneId, size, sunIconSize = 16, sunriseUnix, sunsetUnix} = props;
@@ -27,11 +27,11 @@ export const SunSet = (props: Props) => {
   const nowUnix = DateTime.now().setZone(timeZoneId).toUTC().toSeconds();
   const sunriseDateTime = DateTime.fromSeconds(sunriseUnix).setZone(timeZoneId);
   const sunsetDateTime = DateTime.fromSeconds(sunsetUnix).setZone(timeZoneId);
-  
+
   if (!sunriseDateTime.isValid || !sunsetDateTime.isValid) {
     throw new Error('Unix time props is invalid.');
   }
-  
+
   const sunrise = sunriseDateTime.toFormat('HH:mm a');
   const sunset = sunsetDateTime.toFormat('HH:mm a');
 
@@ -57,7 +57,7 @@ export const SunSet = (props: Props) => {
   if (now > DateTime.fromSeconds(sunsetUnix) || DateTime.fromSeconds(sunriseUnix) > now) {
     sunAnimationValue = 0;
   }
-  
+
   const theme = {
     width: `${size}px`,
     height: `${size}px`,

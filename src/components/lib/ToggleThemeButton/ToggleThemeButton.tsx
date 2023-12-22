@@ -1,4 +1,4 @@
-import {useMediaQuery} from 'react-responsive'
+import {useMediaQuery} from 'react-responsive';
 
 import {MoonIcon, SunIcon} from 'components/icons';
 import {withTheme} from 'hoc';
@@ -15,8 +15,8 @@ export const ToggleThemeButton = withTheme((props: Props) => {
   const iconColor = themeStyles[theme].color;
 
   const mobileAndTablet = useMediaQuery({
-    query: `(max-width: ${mediaBreakpoints.lg}px)`
-  })
+    query: `(max-width: ${mediaBreakpoints.lg}px)`,
+  });
 
   return (
     <StyledThemeButtonContainer>

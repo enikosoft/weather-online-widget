@@ -38,7 +38,7 @@ export const mapApiWeatherDataToFavoritesValues = (data, cities: City[]): Favori
 
     const noCurrCond = !Object.keys(fetchedCurrentConditions).length;
 
-    console.log('fetchedCurrentConditions.datetime', fetchedCurrentConditions.datetime)
+    console.log('fetchedCurrentConditions.datetime', fetchedCurrentConditions.datetime);
     return {
       ...city,
       maxTemp: noCurrCond

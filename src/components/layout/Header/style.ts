@@ -2,7 +2,7 @@ import {Header} from 'antd/es/layout/layout';
 import styled from 'styled-components';
 import {mediaBreakpoints, themeStyles} from 'styles';
 
-export const StyledHeader = styled(Header)`
+export const StyledHeader = styled(Header)<{isDashboard: boolean}>`
   &&& {
     min-height: 60px;
     background: ${(props) => themeStyles[props.theme.mode].background};
@@ -27,6 +27,22 @@ export const StyledHeader = styled(Header)`
       > div {
         width: 100%;
       }
+    }
+
+    @media screen and (max-width: ${mediaBreakpoints.lg}px) {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 2;
+
+      flex-direction: column;
+      padding: 0 0 24px 55px;
+
+      ${({isDashboard}) =>
+        !isDashboard &&
+        `
+          padding: 16px 0 0 54px
+        `}
     }
   }
 `;

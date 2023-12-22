@@ -5,7 +5,9 @@ export const Wrapper = styled.div`
   font-family: ${(props) => themeStyles[props.theme.mode].fontFamily};
   color: ${(props) => themeStyles[props.theme.mode].color};
   font-size: 24px;
-
+  height: 100%;
+  display: flex;
+  flex-direction: column;
   .forecast-controls {
     padding-bottom: 32px;
   }

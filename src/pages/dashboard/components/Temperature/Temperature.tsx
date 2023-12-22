@@ -16,13 +16,13 @@ interface Props {
 export const Temperature = (props: Props) => {
   const {temperature, conditions, icon, description, dataUpdatedAt} = props;
 
-  const currentTime = DateTime.fromJSDate(new Date(dataUpdatedAt)); 
-  
+  const currentTime = DateTime.fromJSDate(new Date(dataUpdatedAt));
+
   const lastUpdatedTime = currentTime.toFormat('h:mm a');
   const lastUpdatedDate = currentTime.toFormat('dd LLL, yyyy');
 
-  console.log('item', conditions, icon)
-  temperature
+  console.log('item', conditions, icon);
+  temperature;
   return (
     <Wrapper>
       <Row>

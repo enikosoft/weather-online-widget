@@ -1,8 +1,8 @@
-import {useCallback} from 'react';
 import {Col, Row} from 'antd';
+import {useCallback} from 'react';
 
-import {useFavoritesStore} from 'state';
 import {CurrentTime} from 'pages/dashboard';
+import {useFavoritesStore} from 'state';
 import {FavoriteCity} from 'types/city';
 
 import {ConditionIcon, LikeIcon} from 'components/lib';

@@ -10,9 +10,9 @@ export interface City {
   countryCode: string;
   photos: string[];
   timezone: {
-    timeZoneId: string,
-    timeZoneName: string,
-    gmt: string
+    timeZoneId: string;
+    timeZoneName: string;
+    gmt: string;
   };
 }
 

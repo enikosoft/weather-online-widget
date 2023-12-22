@@ -1,5 +1,5 @@
-import styled from 'styled-components';
 import {Button} from 'antd';
+import styled from 'styled-components';
 
 export interface DefaultButtonTheme {
   large?: boolean;
@@ -47,7 +47,6 @@ export const Btn = styled(Button)`
     }};
     border-radius: 30px;
     border: ${({theme}) => {
-     
       if (theme.secondary) {
         return '2px solid #FFFFFF';
       }

@@ -1,6 +1,6 @@
-import {WindDirectionImage, Wrapper} from './styles';
 import {WindDirectionIcon, WindSpeedIcon} from 'components/icons';
 import {P} from 'components/layout';
+import {WindDirectionImage, Wrapper} from './styles';
 
 export const Wind = ({windSpeed = 0, windDir = 90}) => {
   return (

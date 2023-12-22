@@ -47,6 +47,6 @@ export const Title = styled(AntdTitle)<TitleProps>`
     }};
 
     color: ${(props) => props.theme.color};
-    padding: ${({$secondary, theme}) => $secondary ? 0 : theme.padding};
+    padding: ${({$secondary, theme}) => ($secondary ? 0 : theme.padding)};
   }
 `;

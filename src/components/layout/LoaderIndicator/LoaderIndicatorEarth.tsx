@@ -1,5 +1,5 @@
-import styled from 'styled-components';
 import earthSpinnerBlack from 'assets/images/earthSpinnerBlack.gif';
+import styled from 'styled-components';
 
 // https://icons8.com/preloaders/en/weather_conditions/winter/
 

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import {ReactNode} from 'react';
-import {QueryClient, UseQueryOptions, DefaultOptions, QueryClientProvider} from 'react-query';
+import {DefaultOptions, QueryClient, QueryClientProvider, UseQueryOptions} from 'react-query';
 import {PromiseValue} from 'type-fest';
 
 const queryConfig: DefaultOptions = {

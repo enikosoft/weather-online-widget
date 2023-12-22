@@ -1,5 +1,5 @@
-import styled from 'styled-components';
 import {Layout} from 'antd';
+import styled from 'styled-components';
 
 import logo from 'assets/images/SearchBackground-1.jpg';
 import {mediaBreakpoints} from 'styles';
@@ -58,9 +58,9 @@ export const SearchPageLayout = styled(Layout)`
       .account-block {
         display: inherit;
         justify-content: inherit;
-       
+
         @media screen and (max-width: ${mediaBreakpoints.xs}px) {
-          min-width:100%;
+          min-width: 100%;
         }
 
         @media screen and (min-width: ${mediaBreakpoints.xs}px) {
@@ -72,10 +72,10 @@ export const SearchPageLayout = styled(Layout)`
         }
       }
     }
-   
+
     .app-name {
       font-size: 80px;
- 
+
       @media screen and (max-width: ${mediaBreakpoints.xs}px) {
         font-size: 36px;
       }

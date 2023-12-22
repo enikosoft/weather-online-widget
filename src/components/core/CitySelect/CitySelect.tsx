@@ -1,13 +1,13 @@
-import {ChangeEvent, useCallback} from 'react';
-import {City} from 'types/city';
-import {mapDataToCity, mapDataToOptions} from 'utils/citiesUtils';
 import ReactSearchAutocomplete from 'components/controls/Select/ReactSearchAutocomplete';
 import {DefaultSelectTheme} from 'components/controls/Select/styles';
+import {ChangeEvent, useCallback} from 'react';
+import {City} from 'types/city';
 import usePlacesAutocomplete, {getDetails} from 'use-places-autocomplete';
+import {mapDataToCity, mapDataToOptions} from 'utils/citiesUtils';
 
 interface Props {
-  mobileAndTablet?: boolean
-  showInputSearchIcon?: boolean
+  mobileAndTablet?: boolean;
+  showInputSearchIcon?: boolean;
   large?: boolean;
   medium?: boolean;
   styling?: DefaultSelectTheme;
@@ -25,6 +25,7 @@ export const CitySelect = (props: Props) => {
     clearSuggestions,
   } = usePlacesAutocomplete({
     requestOptions: {
+      types: ['(cities)'],
       // types: ['locality', 'political', 'geocode'],
       // language: 'en',
     },

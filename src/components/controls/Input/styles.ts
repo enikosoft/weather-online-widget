@@ -44,7 +44,6 @@ export const StyledSearchInput = styled.div`
     padding: 0 8px 0 25px;
   }
 
-
   font-family: inherit;
   font-size: ${(props) => {
     if (props.theme.large) return '1.5em';

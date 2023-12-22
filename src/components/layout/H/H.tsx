@@ -1,12 +1,12 @@
 import {ReactNode} from 'react';
 
-import {ThemeProvider} from 'styled-components';
 import {TitleProps as AntdTitleProps} from 'antd/es/typography/Title';
+import {ThemeProvider} from 'styled-components';
 
 import {DefaultTitleTheme, defaultTitleTheme, Title} from './style';
 
 export interface TitleProps extends AntdTitleProps {
-  className?: string
+  className?: string;
   bold?: boolean;
   secondary?: boolean;
   styling?: DefaultTitleTheme;

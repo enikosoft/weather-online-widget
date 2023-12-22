@@ -1,5 +1,5 @@
-import React from 'react';
 import {Option} from 'components/controls/Option';
+import React from 'react';
 import {StyledOption} from './style';
 
 interface Props {

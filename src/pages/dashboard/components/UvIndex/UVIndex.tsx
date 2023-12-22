@@ -1,10 +1,11 @@
-import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
+import * as am4core from '@amcharts/amcharts4/core';
+import {useEffect} from 'react';
 import styled from 'styled-components';
 import {themeStyles} from 'styles';
-import {useEffect} from 'react';
 
 const Wrapper = styled.div`
+  position: relative;
   > #uvchart {
     > div > svg > g {
       > :last-child {

@@ -1,7 +1,7 @@
 import {GOOGLE_API_KEY} from 'config/api';
-import { formatTimezoneOffset } from 'utils/time';
+import {formatTimezoneOffset} from 'utils/time';
 
-export  const getTimeZoneId = async (lat: number, lng: number) => {
+export const getTimeZoneId = async (lat: number, lng: number) => {
   const timestamp = Math.floor(Date.now() / 1000);
   const apiKey = GOOGLE_API_KEY;
 
@@ -11,15 +11,17 @@ export  const getTimeZoneId = async (lat: number, lng: number) => {
     const response = await fetch(url);
     const data = await response.json();
 
-    if (data.status === "OK") {
+    if (data.status === 'OK') {
       const {timeZoneId, timeZoneName, dstOffset, rawOffset} = data;
       return {
-        timeZoneId, timeZoneName, gmt: formatTimezoneOffset(rawOffset, dstOffset)
-      }
+        timeZoneId,
+        timeZoneName,
+        gmt: formatTimezoneOffset(rawOffset, dstOffset),
+      };
     } else {
-      console.error("Failed to retrieve time zone information.");
+      console.error('Failed to retrieve time zone information.');
     }
   } catch (error) {
-    console.error("An error occurred:", error);
+    console.error('An error occurred:', error);
   }
-}
+};

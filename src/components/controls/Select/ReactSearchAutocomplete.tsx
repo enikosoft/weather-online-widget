@@ -1,11 +1,11 @@
-import React, {ChangeEvent, FocusEvent, FocusEventHandler, KeyboardEvent, useState} from 'react';
-import {ThemeProvider} from 'styled-components';
-import {Input} from '../Input';
-import {DefaultSelectTheme, getSelectStyles, StyledReactSearchAutocomplete} from './styles';
-import Results from './Results';
 import {Option} from 'components/controls/Option';
-import {ThemeProps} from 'styles';
 import {withTheme} from 'hoc';
+import {ChangeEvent, FocusEvent, FocusEventHandler, KeyboardEvent, useState} from 'react';
+import {ThemeProvider} from 'styled-components';
+import {ThemeProps} from 'styles';
+import {Input} from '../Input';
+import Results from './Results';
+import {DefaultSelectTheme, getSelectStyles, StyledReactSearchAutocomplete} from './styles';
 
 export interface ReactSearchAutocompleteProps extends ThemeProps {
   large?: boolean;

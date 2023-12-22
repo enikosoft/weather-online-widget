@@ -1,2 +1,2 @@
-export * from './withTheme';
 export * from './withRouter';
+export * from './withTheme';

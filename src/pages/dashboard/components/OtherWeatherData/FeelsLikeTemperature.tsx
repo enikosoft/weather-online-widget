@@ -1,6 +1,6 @@
 import {TemperatureIcon} from 'components/icons';
-import {DashboardLittleComponent} from './styles';
 import {P} from 'components/layout';
+import {DashboardLittleComponent} from './styles';
 
 export const FeelsLikeTemperature = ({feelsLike = 0}) => {
   return (

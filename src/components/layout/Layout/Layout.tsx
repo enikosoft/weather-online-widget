@@ -5,8 +5,9 @@ import {mediaBreakpoints, themeStyles} from 'styles';
 export const ApplicationLayout = styled(Layout)`
   &&& {
     background: ${(props) => themeStyles[props.theme.mode].background};
-    min-height: 100vh;
+    height: 100svh;
     padding: 40px 60px 40px 40px;
+    overflow: scroll;
 
     @media screen and (max-width: ${mediaBreakpoints.lg}px) {
       padding: 40px 16px;
@@ -15,27 +16,14 @@ export const ApplicationLayout = styled(Layout)`
     > .site-layout {
       background: inherit;
       padding-left: 40px;
+
       margin: 0;
-    }
-
-    .app-content {
-      background: red
-      
-      @media screen and (max-width: ${mediaBreakpoints.xs}px) {
-        left: -16px;
-        position: relative;
-      }
-
-      @media screen and (min-width: ${mediaBreakpoints.sm}px) {
-        left: 0;
+      @media screen and (max-width: ${mediaBreakpoints.lg}px) {
+        padding-left: 0px;
       }
     }
   }
-
- 
 `;
-
-
 
 export const P = styled.p`
   font-family: ${(props) => themeStyles[props.theme.mode].fontFamily};

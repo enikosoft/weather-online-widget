@@ -1,14 +1,14 @@
-import {useCallback} from 'react'
+import {useCallback} from 'react';
 
 import {withTheme} from 'hoc';
 import {useFavoritesStore} from 'state';
 import {ThemeContext, ThemeProps} from 'styles';
 import {City} from 'types/city';
 
-import {LikeIcon} from 'components/lib';
 import {MarkerIcon} from 'components/icons';
+import {LikeIcon} from 'components/lib';
 
-import {HeaderSubText, HeaderText, CityTitleStyled} from './style';
+import {CityTitleStyled, HeaderSubText, HeaderText} from './style';
 
 export const CityTitle = withTheme((props: ThemeProps & {city: City}) => {
   const {city} = props;

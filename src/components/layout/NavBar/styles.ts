@@ -1,17 +1,17 @@
-import styled from 'styled-components';
 import {Menu} from 'antd';
 import Sider from 'antd/es/layout/Sider';
-import {themeStyles} from 'styles';
+import styled from 'styled-components';
+import {mediaBreakpoints, themeStyles} from 'styles';
 
 interface BurgerNav {
-  $open?: boolean
-  $isBurger?: boolean
+  $open?: boolean;
+  $isBurger?: boolean;
 }
 
 export const StyledBurgerButton = styled.button<BurgerNav>`
   position: absolute;
-  top: 55px;
-  left: 32px;
+  top: 60px;
+  left: 24px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -26,31 +26,35 @@ export const StyledBurgerButton = styled.button<BurgerNav>`
   span {
     width: 2rem;
     height: 0.25rem;
-    background: ${({theme, $open}) => $open ? themeStyles[theme.mode].color : themeStyles[theme.mode].color};
+    background: ${({theme, $open}) => ($open ? themeStyles[theme.mode].color : themeStyles[theme.mode].color)};
     border-radius: 10px;
     transition: all 0.3s linear;
     position: relative;
     transform-origin: 1px;
 
     :first-child {
-      transform: ${({$open}) => $open ? 'rotate(45deg)' : 'rotate(0)'};
+      transform: ${({$open}) => ($open ? 'rotate(45deg)' : 'rotate(0)')};
     }
 
     :nth-child(2) {
-      opacity: ${({$open}) => $open ? '0' : '1'};
-      transform: ${({$open}) => $open ? 'translateX(20px)' : 'translateX(0)'};
+      opacity: ${({$open}) => ($open ? '0' : '1')};
+      transform: ${({$open}) => ($open ? 'translateX(20px)' : 'translateX(0)')};
     }
 
     :nth-child(3) {
-      transform: ${({$open}) => $open ? 'rotate(-45deg)' : 'rotate(0)'};
+      transform: ${({$open}) => ($open ? 'rotate(-45deg)' : 'rotate(0)')};
     }
+  }
+
+  @media screen and (max-width: ${mediaBreakpoints.lg}px) {
+    top: 20px;
   }
 `;
 
 export const StyledBurgerNavMenu = styled.nav<BurgerNav>`
   display: flex;
   flex-direction: column;
-  transform: ${({$open}) => $open ? 'translateX(0)' : 'translateX(-100%)'};
+  transform: ${({$open}) => ($open ? 'translateX(0)' : 'translateX(-100%)')};
   height: 100vh;
   text-align: left;
   position: absolute;
@@ -70,14 +74,14 @@ export const StyledBurgerNavMenu = styled.nav<BurgerNav>`
 
 export const StyledNavSider = styled(Sider)<BurgerNav>`
   &&& {
-    min-height:  ${({$isBurger}) => $isBurger ? '100vh' : 'auto'};
+    min-height: ${({$isBurger}) => ($isBurger ? '100vh' : 'auto')};
 
     background: ${(props) => themeStyles[props.theme.mode].navBg};
     font-family: ${(props) => themeStyles[props.theme.mode].fontFamily};
 
     border-radius: 16px;
-    border-bottom-left-radius:  ${({$isBurger}) => $isBurger && 'unset'};
-    border-top-left-radius:  ${({$isBurger}) => $isBurger && 'unset'};
+    border-bottom-left-radius: ${({$isBurger}) => $isBurger && 'unset'};
+    border-top-left-radius: ${({$isBurger}) => $isBurger && 'unset'};
 
     .ant-layout-sider-trigger {
       border-radius: 16px;
@@ -93,7 +97,7 @@ export const StyledNavSider = styled(Sider)<BurgerNav>`
       font-size: 30px;
     }
 
-    > .ant-layout-sider-trigger{
+    > .ant-layout-sider-trigger {
       background: transparent;
       color: ${(props) => themeStyles[props.theme.mode].color};
     }
@@ -110,10 +114,10 @@ export const StyledNav = styled(Menu)<BurgerNav>`
     background: inherit;
 
     margin: auto;
-    padding: ${({$isBurger}) => $isBurger ? '132px 0 0 18px;' : '50px 0 0 0;'}; */
+    padding: ${({$isBurger}) => ($isBurger ? '132px 0 0 18px;' : '50px 0 0 0;')}; */
 
     width: 100%;
-    height:  ${({$isBurger}) => $isBurger ? '100vh' : 'auto'};
+    height:  ${({$isBurger}) => ($isBurger ? '100vh' : 'auto')};
 
     &.ant-menu.ant-menu-inline-collapsed {
       width: ${(props) => {
@@ -126,18 +130,18 @@ export const StyledNav = styled(Menu)<BurgerNav>`
       display: flex;
 
       width: ${(props) => {
-        if (props.$isBurger) return '90%'
+        if (props.$isBurger) return '90%';
         if (props.theme.collapsed) return '40px';
         return '90%';
       }};
-      height: ${({$isBurger}) => $isBurger ? '48px' : '40px'};
+      height: ${({$isBurger}) => ($isBurger ? '48px' : '40px')};
 
       margin: 5px;
       padding: 0 0 0 10px;
 
       font-family: ${(props) => themeStyles[props.theme.mode].fontFamily};
       color: ${(props) => themeStyles[props.theme.mode].color};
-      font-size:  ${({$isBurger, theme}) => $isBurger ? '24px' : themeStyles[theme.mode].fontSize};
+      font-size:  ${({$isBurger, theme}) => ($isBurger ? '24px' : themeStyles[theme.mode].fontSize)};
     }
 
     > li.ant-menu-item-selected {
@@ -152,7 +156,7 @@ export const StyledNav = styled(Menu)<BurgerNav>`
 
     > li.ant-menu-item-icon {
       transition: none;
-      font-size:  ${({$isBurger, theme}) => $isBurger ? '32px' : themeStyles[theme.mode].fontSize};
+      font-size:  ${({$isBurger, theme}) => ($isBurger ? '32px' : themeStyles[theme.mode].fontSize)};
     }
   }
 `;

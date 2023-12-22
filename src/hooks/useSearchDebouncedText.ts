@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import {useEffect, useState} from 'react';
 import {useDebounce} from './useDebounce';
 
 // Custom hook for getting debounced input text from select
